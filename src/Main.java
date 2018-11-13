@@ -1,9 +1,19 @@
+
+import api.ApiConnection;
+import api.ApiQuery;
+import api.table.TableUser;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.management.Query;
+import utils.Constant;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author maqielhilmanm
@@ -15,6 +25,19 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+        try {
+
+            ApiConnection.setConnection(Constant.host, Constant.port, Constant.db, Constant.user, Constant.password);
+
+            ApiQuery<TableUser> users = new ApiQuery<>();
+            users.readSingleTable();
+            
+            ApiConnection.closeConnection();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
     }
-    
+
 }
