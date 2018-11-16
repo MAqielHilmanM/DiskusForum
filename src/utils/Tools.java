@@ -5,10 +5,19 @@
  */
 package utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author maqielhm
  */
 public class Tools {
-    
+    public static List<String> arrayToList(String[] s){
+        List<String> lists = new ArrayList<>();
+        for (int i = 0; i < s.length; i++) {
+            lists.add(s[i]);
+        }
+        return lists;
+    }
 }

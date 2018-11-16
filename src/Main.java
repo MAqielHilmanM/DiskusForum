@@ -1,11 +1,13 @@
 
 import api.ApiConnection;
-import api.ApiQuery;
-import api.table.TableUser;
+import api.query.ApiReadQuery;
+import api.daos.UserDao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.management.Query;
 import utils.Constant;
 
@@ -29,9 +31,9 @@ public class Main {
         try {
 
             ApiConnection.setConnection(Constant.host, Constant.port, Constant.db, Constant.user, Constant.password);
-
-            ApiQuery<TableUser> users = new ApiQuery<>();
-            users.readSingleTable();
+            
+            ApiReadQuery apiQuery = new ApiReadQuery(UserDao.TABLE_NAME);
+            
             
             ApiConnection.closeConnection();
         } catch (Exception ex) {
