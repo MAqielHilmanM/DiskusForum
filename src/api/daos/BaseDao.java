@@ -22,7 +22,7 @@ public abstract class BaseDao<T> {
         this.mColumns = mColumns;
     }
 
-    protected abstract T toObject(ResultSet rs);
+    public abstract List<T> toObjects(ResultSet rs);
 
     public String getTableName() {
         return mTableName;

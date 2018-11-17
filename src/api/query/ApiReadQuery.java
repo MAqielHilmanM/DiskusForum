@@ -5,6 +5,7 @@
  */
 package api.query;
 
+import api.ApiConnection;
 import api.daos.UserDao;
 import com.sun.istack.internal.Nullable;
 import java.sql.ResultSet;
@@ -120,7 +121,7 @@ public class ApiReadQuery {
         } else {
             for (int i = 0; i < mColumns.size(); i++) {
                 query = query.concat(mColumns.get(i));
-                if (i != mColumns.size()) {
+                if (i != mColumns.size()-1) {
                     query = query.concat(",");
                 }
                 query = query.concat(" ");
@@ -144,14 +145,20 @@ public class ApiReadQuery {
             query = query.concat(" ");
         }
 
-        if (mWhere.size() > 0) {
-            query = query.concat("WHERE ");
-            
-        }
+        System.out.println("READ QUERY : " + query);
         return query;
     }
 
     public ResultSet execute() {
+        try {
+            Statement state = ApiConnection.getConnection().createStatement();
+            String query = prepareQuery();
+            return state.executeQuery(query);
+            
+        } catch(Exception e){
+            System.err.println("READ QUERY ERROR :"+e);
+        }
+        
         return null;
     }
 

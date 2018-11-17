@@ -33,7 +33,12 @@ public class Main {
             ApiConnection.setConnection(Constant.host, Constant.port, Constant.db, Constant.user, Constant.password);
             
             ApiReadQuery apiQuery = new ApiReadQuery(UserDao.TABLE_NAME);
+            ResultSet rs = apiQuery.showColumn(UserDao.COLUMN_ID).showColumn(UserDao.COLUMN_NAME).showColumn(UserDao.COLUMN_ADDRESS).execute();
+            List<UserDao> users = new ArrayList<>();
+            users = new UserDao().toObjects(rs);
             
+            System.out.println(users.size());
+            System.out.println(users.get(0).getAddress());
             
             ApiConnection.closeConnection();
         } catch (Exception ex) {

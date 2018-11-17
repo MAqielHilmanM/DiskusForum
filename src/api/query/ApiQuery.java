@@ -9,6 +9,6 @@ package api.query;
  *
  * @author maqielhm
  */
-public class ApiQuery {
+public interface ApiQuery {
     
 }

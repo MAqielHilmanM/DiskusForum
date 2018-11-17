@@ -7,13 +7,16 @@ package api.daos;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author maqielhm
  */
 public class VertificationDao extends BaseDao<VertificationDao> {
+
     public static final String TABLE_NAME = "t_verification";
     public static final String COLUMN_ID = "id_user";
     public static final String COLUMN_PHOTO = "url_photo";
@@ -32,20 +35,24 @@ public class VertificationDao extends BaseDao<VertificationDao> {
     private Date verifiedDate;
 
     public VertificationDao() {
-        super(TABLE_NAME,COLUMNS);
+        super(TABLE_NAME, COLUMNS);
     }
 
     @Override
-    protected VertificationDao toObject(ResultSet rs) {
+    public List<VertificationDao> toObjects(ResultSet rs) {
+        List<VertificationDao> lists = new ArrayList<>();
         try {
-           id = rs.getString(COLUMN_ID);
-           url_photo = rs.getString(COLUMN_PHOTO);
-           isVerified = rs.getBoolean(COLUMN_ISVERIFIED);
-           verifiedDate = rs.getDate(COLUMN_VERIFIED_DATE);
+            while (rs.next()) {
+                id = rs.getString(COLUMN_ID);
+                url_photo = rs.getString(COLUMN_PHOTO);
+                isVerified = rs.getBoolean(COLUMN_ISVERIFIED);
+                verifiedDate = rs.getDate(COLUMN_VERIFIED_DATE);
+                lists.add(this);
+            }
         } catch (SQLException e) {
-            System.err.println("Error : "+e);
+            System.err.println("Error : " + e);
         }
-        return this;
+        return lists;
     }
 
 }

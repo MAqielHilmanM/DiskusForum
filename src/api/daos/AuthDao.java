@@ -6,13 +6,16 @@
 package api.daos;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author maqielhm
  */
-public class AuthDao extends BaseDao<AuthDao>{
+public class AuthDao extends BaseDao<AuthDao> {
+
     public static final String TABLE_NAME = "t_auth";
     public static final String COLUMN_ID = "id_user";
     public static final String COLUMN_EMAIL = "email";
@@ -38,17 +41,22 @@ public class AuthDao extends BaseDao<AuthDao>{
     }
 
     @Override
-    protected AuthDao toObject(ResultSet rs) {
+    public List<AuthDao> toObjects(ResultSet rs) {
+        List<AuthDao> lists = new ArrayList<>();
         try {
-            id = rs.getString(COLUMN_ID);
-            email = rs.getString(COLUMN_EMAIL);
-            username = rs.getString(COLUMN_USERNAME);
-            password = rs.getString(COLUMN_PASSWORD);
-            modifiedDate = rs.getDate(COLUMN_MODIFIED_DATE);
+            while (lists.add(this)) {
+                id = rs.getString(COLUMN_ID);
+                email = rs.getString(COLUMN_EMAIL);
+                username = rs.getString(COLUMN_USERNAME);
+                password = rs.getString(COLUMN_PASSWORD);
+                modifiedDate = rs.getDate(COLUMN_MODIFIED_DATE);
+                lists.add(this);
+            }
+
         } catch (Exception e) {
-            System.err.println("ERROR :"+e);
+            System.err.println("ERROR :" + e);
         }
-        return this;
+        return lists;
     }
-    
+
 }

@@ -9,6 +9,7 @@ import api.ApiConnection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import utils.Tools;
@@ -18,19 +19,8 @@ import utils.Tools;
  * @author maqielhm
  */
 public class UserDao extends BaseDao<UserDao> {
+
     public static final String TABLE_NAME = "t_user";
-    public static final String[] COLUMNS = {
-        "id_user",
-        "name",
-        "gender",
-        "phone",
-        "biograph",
-        "address",
-        "country",
-        "url_cover",
-        "url_photo",
-        "created_date"
-    };
 
     public static final String COLUMN_ID = "id_user";
     public static final String COLUMN_NAME = "name";
@@ -39,9 +29,22 @@ public class UserDao extends BaseDao<UserDao> {
     public static final String COLUMN_BIOGRAPH = "biograph";
     public static final String COLUMN_ADDRESS = "address";
     public static final String COLUMN_COUNTRY = "country";
-    public static final String COLUMN_URL_COVER = "url_cover";
-    public static final String COLUMN_URL_PHOTO = "url_photo";
+    public static final String COLUMN_URL_COVER = "URL_Cover";
+    public static final String COLUMN_URL_PHOTO = "URL_Photo";
     public static final String COLUMN_CREATED_DATE = "created_date";
+
+    public static final String[] COLUMNS = {
+        COLUMN_ID,
+        COLUMN_NAME,
+        COLUMN_GENDER,
+        COLUMN_PHONE,
+        COLUMN_BIOGRAPH,
+        COLUMN_ADDRESS,
+        COLUMN_COUNTRY,
+        COLUMN_URL_COVER,
+        COLUMN_URL_PHOTO,
+        COLUMN_CREATED_DATE
+    };
 
     private String id;
     private String name;
@@ -97,26 +100,28 @@ public class UserDao extends BaseDao<UserDao> {
     public Date getCreated_date() {
         return created_date;
     }
-    
-    
 
     @Override
-    protected UserDao toObject(ResultSet rs) {
+    public List<UserDao> toObjects(ResultSet rs) {
+        List<UserDao> users = new ArrayList<>();
         try {
-            this.id = rs.getString(COLUMN_ID);
-            this.name = rs.getString(COLUMN_NAME);
-            this.gender = rs.getString(COLUMN_GENDER).charAt(0);
-            this.phone = rs.getLong(COLUMN_PHONE);
-            this.biograph = rs.getString(COLUMN_BIOGRAPH);
-            this.address = rs.getString(COLUMN_ADDRESS);
-            this.country = rs.getString(COLUMN_COUNTRY);
-            this.url_cover = rs.getString(COLUMN_URL_COVER);
-            this.url_photo = rs.getString(COLUMN_URL_PHOTO);
-            this.created_date = rs.getDate(COLUMN_CREATED_DATE);
-        }catch(SQLException ex){
-            System.err.println("Error code : "+ex.getMessage());
+            while (rs.next()) {
+                this.id = rs.getString(COLUMN_ID);
+                this.name = rs.getString(COLUMN_NAME);
+                this.gender = rs.getString(COLUMN_GENDER).charAt(0);
+                this.phone = rs.getLong(COLUMN_PHONE);
+                this.biograph = rs.getString(COLUMN_BIOGRAPH);
+                this.address = rs.getString(COLUMN_ADDRESS);
+                this.country = rs.getString(COLUMN_COUNTRY);
+                this.url_cover = rs.getString(COLUMN_URL_COVER);
+                this.url_photo = rs.getString(COLUMN_URL_PHOTO);
+                this.created_date = rs.getDate(COLUMN_CREATED_DATE);
+                users.add(this);
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error code : " + ex.getMessage());
         }
-        return this;
+        return users;
     }
 
 }
