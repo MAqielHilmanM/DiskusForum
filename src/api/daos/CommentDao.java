@@ -5,28 +5,46 @@
  */
 package api.daos;
 
+import java.sql.ResultSet;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author maqielhm
  */
-public class CommentDao {
-    public static final String TABLE_NAME = "t_verification";
-    public static final String COLUMN_ID = "id_user";
-    public static final String COLUMN_PHOTO = "url_photo";
-    public static final String COLUMN_ISVERIFIED = "isVerified";
-    public static final String COLUMN_VERIFIED_DATE = "verified_date";
+public class CommentDao extends BaseDao<CommentDao> {
+
+    public static final String TABLE_NAME = "t_comment";
+    public static final String COLUMN_ID_COMMENT = "id_comment";
+    public static final String COLUMN_ID_MEMBER = "id_member";
+    public static final String COLUMN_ID_THREAD = "id_thread";
+    public static final String COLUMN_COMMENT = "comment";
+    public static final String COLUMN_LIKE = "like";
+    public static final String COLUMN_CREATED_DATE = "created_date";
     public static final String[] COLUMNS = {
-        COLUMN_ID,
-        COLUMN_PHOTO,
-        COLUMN_ISVERIFIED,
-        COLUMN_VERIFIED_DATE
+        COLUMN_ID_COMMENT,
+        COLUMN_ID_MEMBER,
+        COLUMN_ID_THREAD,
+        COLUMN_COMMENT,
+        COLUMN_LIKE,
+        COLUMN_CREATED_DATE
     };
 
-    private String id;
-    private String url_photo;
-    private boolean isVerified;
-    private Date verifiedDate;
+    private String id_comment;
+    private String id_member;
+    private String id_thread;
+    private String comment;
+    private String like;
+    private Date created_date;
+
+    public CommentDao() {
+        super(TABLE_NAME, COLUMNS);
+    }
+
+    @Override
+    public List<CommentDao> toObjects(ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

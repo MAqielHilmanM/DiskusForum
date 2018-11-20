@@ -5,28 +5,42 @@
  */
 package api.daos;
 
+import java.sql.ResultSet;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author maqielhm
  */
-public class TrustedDao {
-    public static final String TABLE_NAME = "t_verification";
-    public static final String COLUMN_ID = "id_user";
-    public static final String COLUMN_PHOTO = "url_photo";
-    public static final String COLUMN_ISVERIFIED = "isVerified";
-    public static final String COLUMN_VERIFIED_DATE = "verified_date";
+public class TrustedDao extends BaseDao<TrustedDao>{
+    public static final String TABLE_NAME = "t_trusted";
+    public static final String COLUMN_ID_TRUSTED = "id_trusted";
+    public static final String COLUMN_ID_THREAD = "id_thread";
+    public static final String COLUMN_ID_MEMBER = "id_member";
+    public static final String COLUMN_IS_TRUSTED = "isTrusted";
+    public static final String COLUMN_MODIFIED_DATE = "modified_date";
     public static final String[] COLUMNS = {
-        COLUMN_ID,
-        COLUMN_PHOTO,
-        COLUMN_ISVERIFIED,
-        COLUMN_VERIFIED_DATE
+        COLUMN_ID_TRUSTED,
+        COLUMN_ID_THREAD,
+        COLUMN_ID_MEMBER,
+        COLUMN_IS_TRUSTED,
+        COLUMN_MODIFIED_DATE
     };
 
-    private String id;
-    private String url_photo;
-    private boolean isVerified;
-    private Date verifiedDate;
+    private String idTrusted;
+    private String idThread;
+    private String idMember;
+    private boolean isTrusted;
+    private Date modifiedDate;
+
+    public TrustedDao() {
+        super(TABLE_NAME, COLUMNS);
+    }
+
+    @Override
+    public List<TrustedDao> toObjects(ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
  
 }

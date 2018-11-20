@@ -48,7 +48,7 @@ class Relational {
 
 }
 
-public class ApiReadQuery {
+public class ApiReadQuery implements ApiBaseQuery<ApiReadQuery>{
 
     final private List<String> mColumns;
     final private List<String> mTables;
@@ -113,6 +113,7 @@ public class ApiReadQuery {
         return this;
     }
 
+    @Override
     public String prepareQuery() {
         String query = "SELECT ";
 
@@ -149,6 +150,7 @@ public class ApiReadQuery {
         return query;
     }
 
+    @Override
     public ResultSet execute() {
         try {
             Statement state = ApiConnection.getConnection().createStatement();
@@ -161,50 +163,4 @@ public class ApiReadQuery {
         
         return null;
     }
-
-    /*
-    Frame Work Alpha
-    
-    private String defineColumn(List<String> column) {
-        if (column.size() >= 0) {
-            String s = "";
-            for (int i = 0; i < column.size(); i++) {
-                s.concat(column.get(i));
-                if (column.size() >= 1 && i != (column.size() - 1)) {
-                    s.concat(",");
-                }
-            }
-            return s;
-        }
-        return "*";
-    }
-    
-    public ResultSet getResultSingleTable(List<String> column) {
-        try {
-            Statement state = ApiConnection.getConnection().createStatement();
-            String query = "Select " + defineColumn(column) + " from " + table;
-            ResultSet rs = state.executeQuery(query);
-            return rs;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public void readSingleTable(@Nullable List<String> column) {
-        if (column == null) {
-            column = ;
-        }
-        
-        try {
-            ResultSet rs = getResultSingleTable(column);
-            while (rs.next()) {
-                for (int i = 0; i < column.size(); i++) {
-                    System.out.println(column.get(i) + " : " + rs.getString(column.get(i)));
-                }
-            }
-        } catch (Exception e) {
-
-        }
-    }
-     */
 }

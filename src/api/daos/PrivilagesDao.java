@@ -5,28 +5,56 @@
  */
 package api.daos;
 
+import java.sql.ResultSet;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author maqielhm
  */
-public class PrivilagesDao {
-    public static final String TABLE_NAME = "t_verification";
-    public static final String COLUMN_ID = "id_user";
-    public static final String COLUMN_PHOTO = "url_photo";
-    public static final String COLUMN_ISVERIFIED = "isVerified";
-    public static final String COLUMN_VERIFIED_DATE = "verified_date";
+public class PrivilagesDao extends BaseDao<PrivilagesDao>{
+    public static final String TABLE_NAME = "t_privilages";
+    public static final String COLUMN_ID = "id_privilages";
+    public static final String COLUMN_CAN_ADD_THREAD = "canAddThread";
+    public static final String COLUMN_CAN_DELETE_THREAD = "canDeleteThread";
+    public static final String COLUMN_CAN_EDIT_THREAD = "canEditThread";
+    public static final String COLUMN_CAN_ADD_MEMBER = "canAddMember";
+    public static final String COLUMN_CAN_DELETE_MEMBER = "canDeleteMember";
+    public static final String COLUMN_CAN_ADD_COMMENT = "canAddComment";
+    public static final String COLUMN_CAN_REMOVE_COMMENT = "canRemoveComment";
+    public static final String COLUMN_CAN_EDIT_COMMENT = "canEditComment";
+    public static final String COLUMN_CAN_REMOVE_USER = "canRemoveUser";
+    public static final String COLUMN_CAN_EDIT_USER = "canEditUser";
+    public static final String COLUMN_CAN_ADD_COMMUNITY = "canAddCommunity";
+    public static final String COLUMN_CAN_EDIT_COMMUNITY = "canEditCommunity";
+    public static final String COLUMN_CAN_REMOVE_COMMUNITY = "canRemoveCommunity";
     public static final String[] COLUMNS = {
         COLUMN_ID,
-        COLUMN_PHOTO,
-        COLUMN_ISVERIFIED,
-        COLUMN_VERIFIED_DATE
+        COLUMN_CAN_ADD_THREAD,
+        COLUMN_CAN_DELETE_THREAD,
+        COLUMN_CAN_EDIT_THREAD,
+        COLUMN_CAN_ADD_MEMBER,
+        COLUMN_CAN_DELETE_MEMBER,
+        COLUMN_CAN_ADD_COMMENT,
+        COLUMN_CAN_REMOVE_COMMENT,
+        COLUMN_CAN_EDIT_COMMENT,
+        COLUMN_CAN_REMOVE_USER,
+        COLUMN_CAN_EDIT_USER,
+        COLUMN_CAN_ADD_COMMUNITY,
+        COLUMN_CAN_EDIT_COMMUNITY,
+        COLUMN_CAN_REMOVE_COMMUNITY
     };
 
     private String id;
-    private String url_photo;
-    private boolean isVerified;
-    private Date verifiedDate;
+
+    public PrivilagesDao() {
+        super(TABLE_NAME, COLUMNS);
+    }
+
+    @Override
+    public List<PrivilagesDao> toObjects(ResultSet rs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

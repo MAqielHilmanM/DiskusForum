@@ -1,4 +1,5 @@
 import api.ApiConnection;
+import api.daos.AuthDao;
 import api.query.ApiReadQuery;
 import api.daos.UserDao;
 import java.sql.Connection;
@@ -31,13 +32,11 @@ public class Main {
 
             ApiConnection.setConnection(Constant.host, Constant.port, Constant.db, Constant.user, Constant.password);
             
-            ApiReadQuery apiQuery = new ApiReadQuery(UserDao.TABLE_NAME);
+            ApiReadQuery apiQuery = new ApiReadQuery(AuthDao.TABLE_NAME);
             ResultSet rs = apiQuery.showAllColumn().execute();
-            List<UserDao> users = new ArrayList<>();
-            users = new UserDao().toObjects(rs);
-            
-            System.out.println(users.size());
-            System.out.println(users.get(0).getAddress());
+            List<AuthDao> users = new ArrayList<>();
+            users = new AuthDao().toObjects(rs);
+            System.out.println(users.get(0).getUsername());
             
             ApiConnection.closeConnection();
         } catch (Exception ex) {

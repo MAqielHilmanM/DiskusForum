@@ -11,4 +11,11 @@ package login;
  */
 public class LoginController {
     
+    public void onClickLogin(){
+        
+    }
+    
+    public void onClickRegister(){
+    
+    }
 }
