@@ -6,6 +6,8 @@
 package api.daos;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,7 +40,20 @@ public class MemberDao extends BaseDao<MemberDao>{
 
     @Override
     public List<MemberDao> toObjects(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<MemberDao> lists = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                id_member = rs.getString(COLUMN_ID_MEMBER);
+                id_community = rs.getString(COLUMN_ID_COMMUNITY);
+                id_privilages = rs.getString(COLUMN_ID_PRIVILAGE);
+                joinDate = rs.getDate(COLUMN_JOIN_DATE);
+                lists.add(this);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error : " + e);
+        }
+        return lists;
+
     }
 
 }

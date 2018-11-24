@@ -5,7 +5,13 @@
  */
 package api.daos;
 
+import static api.daos.VertificationDao.COLUMN_ID;
+import static api.daos.VertificationDao.COLUMN_ISVERIFIED;
+import static api.daos.VertificationDao.COLUMN_PHOTO;
+import static api.daos.VertificationDao.COLUMN_VERIFIED_DATE;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +46,20 @@ public class TrustedDao extends BaseDao<TrustedDao>{
 
     @Override
     public List<TrustedDao> toObjects(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<TrustedDao> lists = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                idTrusted = rs.getString(COLUMN_ID_TRUSTED);
+                idThread = rs.getString(COLUMN_ID_THREAD);
+                idMember = rs.getString(COLUMN_ID_MEMBER);
+                isTrusted = rs.getBoolean(COLUMN_IS_TRUSTED);
+                modifiedDate = rs.getDate(COLUMN_MODIFIED_DATE);
+                lists.add(this);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error : " + e);
+        }
+        return lists;
     }
  
 }

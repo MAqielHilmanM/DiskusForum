@@ -4,14 +4,18 @@
  * and open the template in the editor.
  */
 package api.query;
-
-import java.sql.ResultSet;
-
 /**
  *
  * @author maqielhm
+ * @param <T> 
+ * @param <K> Inner Class for Condition
  */
-public interface ApiBaseQuery<T> {
-    public ResultSet execute();
-    public String prepareQuery();
+
+
+
+public abstract class ApiBaseQuery<T>{
+    public abstract void prepareQuery();
+    public abstract T execute();
+    public abstract void inputCustomQuery(String query);
+    
 }

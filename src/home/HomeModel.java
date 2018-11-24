@@ -5,13 +5,24 @@
  */
 package home;
 
+import java.util.List;
+
 /**
  *
  * @author maqielhm
  */
 public class HomeModel {
-    static class Request{
+    String name;
+    String urlPhoto;
+    List<ListThreadModel> lists;
+
+    private static class ListThreadModel {
+
+        public ListThreadModel() {
+        }
     }
-    static class Response{
+    
+    private class ThreadModel{
+    
     }
 }

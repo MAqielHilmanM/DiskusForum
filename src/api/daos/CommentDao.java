@@ -6,6 +6,7 @@
 package api.daos;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class CommentDao extends BaseDao<CommentDao> {
     private String id_member;
     private String id_thread;
     private String comment;
-    private String like;
+    private int like;
     private Date created_date;
 
     public CommentDao() {
@@ -44,7 +45,21 @@ public class CommentDao extends BaseDao<CommentDao> {
 
     @Override
     public List<CommentDao> toObjects(ResultSet rs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<CommentDao> lists = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                id_comment = rs.getString(COLUMN_COMMENT);
+                id_member = rs.getString(COLUMN_ID_COMMENT);
+                id_thread = rs.getString(COLUMN_ID_THREAD);
+                comment = rs.getString(COLUMN_COMMENT);
+                like = rs.getInt(COLUMN_LIKE);
+                created_date = rs.getDate(COLUMN_CREATED_DATE);
+                lists.add(this);
+            }
+        } catch (Exception e) {
+            System.err.println("ERROR :" + e);
+        }
+        return lists;
     }
 
 }

@@ -5,6 +5,8 @@
  */
 package login;
 
+import home.HomeController;
+
 /**
  *
  * @author maqielhm
@@ -112,6 +114,11 @@ public class LoginView extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/Group 6 (1).png"))); // NOI18N
         jLabel5.setText("jLabel5");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Don't have an account? Sign up here!");
@@ -217,6 +224,10 @@ public class LoginView extends javax.swing.JFrame {
     private void tfUsernameTextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_tfUsernameTextValueChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_tfUsernameTextValueChanged
+
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel5MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
