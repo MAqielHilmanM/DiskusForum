@@ -42,7 +42,6 @@ public class ApiConnection {
     private static Connection createConnection(String host, int port, String db, String user, String password) {
         /* Declare and initialize a sql Connection variable. */
         Connection ret = null;
-
         try {
 
             /* Register for jdbc driver class. */

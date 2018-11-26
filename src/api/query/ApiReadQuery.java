@@ -147,37 +147,37 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
 
     @Override
     public Condition conditionEqual(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" = "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" = "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionNotEqual(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" <> "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" <> "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionGraterThanOrEqual(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" >= "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" >= "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionLessThanOrEqual(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" <= "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" <= "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionLessThan(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" < "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" < "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionGraterThan(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" > "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" > "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 

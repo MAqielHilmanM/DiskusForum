@@ -98,37 +98,37 @@ public class ApiUpdateQuery<T extends BaseDao<T>> extends ApiBaseQuery<Boolean> 
 
     @Override
     public Condition conditionEqual(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" = "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" = "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionNotEqual(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" <> "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" <> "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionGraterThanOrEqual(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" >= "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" >= "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionLessThanOrEqual(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" <= "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" <= "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionLessThan(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" < "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" < "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionGraterThan(Object a, Object b) {
-        mWhere = mWhere.concat(Tools.convertToQueryValue(a)+" > "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a+" > "+Tools.convertToQueryValue(b));
         return new Condition();
     }
 
@@ -143,7 +143,7 @@ public class ApiUpdateQuery<T extends BaseDao<T>> extends ApiBaseQuery<Boolean> 
         mWhere = mWhere.concat(column+" Like "+Tools.convertToQueryValue(b));
         return new Condition();
     }
-
+    
     @Override
     public Condition conditionIn(String column, Object[] b) {
         mWhere = mWhere.concat(column+" IN(");

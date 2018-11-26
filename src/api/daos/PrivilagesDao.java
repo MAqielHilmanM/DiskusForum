@@ -53,6 +53,19 @@ public class PrivilagesDao extends BaseDao<PrivilagesDao>{
     };
 
     private String id;
+    private boolean canAddThread;
+    private boolean canDeleteThread;
+    private boolean canEditThread;
+    private boolean canAddMember;
+    private boolean canDeleteMember;
+    private boolean canAddComment;
+    private boolean canRemoveComment;
+    private boolean canEditComment;
+    private boolean canRemoveUser;
+    private boolean canEditUser;
+    private boolean canAddCommunity;
+    private boolean canEditCommunity;
+    private boolean canRemoveCommunity;
 
     public PrivilagesDao() {
         super(TABLE_NAME, COLUMNS);
@@ -64,6 +77,19 @@ public class PrivilagesDao extends BaseDao<PrivilagesDao>{
         try {
             while (rs.next()) {
                 id = rs.getString(COLUMN_ID);
+                canAddThread        = rs.getBoolean(COLUMN_CAN_ADD_THREAD);
+                canDeleteThread     = rs.getBoolean(COLUMN_CAN_DELETE_THREAD);
+                canEditThread       = rs.getBoolean(COLUMN_CAN_EDIT_THREAD);
+                canAddMember        = rs.getBoolean(COLUMN_CAN_ADD_MEMBER);
+                canDeleteMember     = rs.getBoolean(COLUMN_CAN_DELETE_MEMBER);
+                canAddComment       = rs.getBoolean(COLUMN_CAN_ADD_COMMENT);
+                canRemoveComment    = rs.getBoolean(COLUMN_CAN_REMOVE_COMMENT);
+                canEditComment      = rs.getBoolean(COLUMN_CAN_EDIT_COMMENT);
+                canRemoveUser       = rs.getBoolean(COLUMN_CAN_REMOVE_USER);
+                canEditUser         = rs.getBoolean(COLUMN_CAN_EDIT_USER);
+                canAddCommunity     = rs.getBoolean(COLUMN_CAN_ADD_COMMUNITY);
+                canEditCommunity    = rs.getBoolean(COLUMN_CAN_EDIT_COMMUNITY);
+                canRemoveCommunity  = rs.getBoolean(COLUMN_CAN_REMOVE_COMMUNITY);
                 lists.add(this);
             }
         } catch (SQLException e) {

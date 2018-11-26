@@ -38,7 +38,8 @@ public class Main {
             
             ApiReadQuery apiQuery = new ApiReadQuery(new AuthDao());
             List<AuthDao> data = apiQuery.showAllColumn().conditionEqual(AuthDao.COLUMN_USERNAME, "maqielhm").execute();
-            System.out.println("email : "+data.get(0).getUsername());
+            System.out.println("size : "+data.size());
+            
 
 //            List<AuthDao> lists = new ArrayList<>();
 //            AuthDao authResult = new AuthDao();
