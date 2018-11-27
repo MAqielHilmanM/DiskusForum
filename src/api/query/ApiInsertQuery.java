@@ -23,6 +23,7 @@ public class ApiInsertQuery<T extends BaseDao<T>> extends ApiBaseQuery<Boolean> 
     private final HashMap<String, String> mColumnsValue;
     private String mTableName;
     private String mQuery = "";
+    private T mTable;
 
     public ApiInsertQuery() {
         mColumnsValue = new HashMap<>();
@@ -31,6 +32,12 @@ public class ApiInsertQuery<T extends BaseDao<T>> extends ApiBaseQuery<Boolean> 
     public ApiInsertQuery(String table) {
         mColumnsValue = new HashMap<>();
         mTableName = table;
+    }
+
+    public ApiInsertQuery(T mTable) {
+        this.mTable = mTable;
+        mTableName = mTable.getTableName();
+        mColumnsValue = new HashMap<>();
     }
 
     public ApiInsertQuery defineTable(String table) {
@@ -43,25 +50,32 @@ public class ApiInsertQuery<T extends BaseDao<T>> extends ApiBaseQuery<Boolean> 
         return this;
     }
 
-    public ApiInsertQuery insertColumnValue(String column, String Value) throws Exception {
+    public ApiInsertQuery insertColumnValue(String column, String Value) {
         if (mTableName.isEmpty()) {
-            throw new Exception("Sorry Table Not Found");
+            System.out.println("Table Name is Empty");
+            return null;
+        } else {
+
+            mColumnsValue.put(column, Value);
+            return this;
         }
 
-        mColumnsValue.put(column, Value);
-        return this;
     }
 
     @Override
     public Boolean execute() {
         try {
+            if (!ApiConnection.hasSet()) {
+                throw new Exception("Connection Not Set");
+            }
+            ApiConnection.createConnection();
             Statement state = ApiConnection.getConnection().createStatement();
             prepareQuery();
             if (state.executeUpdate(mQuery) > 0) {
                 System.out.println("Insert Data Sucess");
                 return true;
             }
-
+            ApiConnection.closeConnection();
         } catch (Exception e) {
             System.err.println("READ QUERY ERROR :" + e);
         }
@@ -105,7 +119,7 @@ public class ApiInsertQuery<T extends BaseDao<T>> extends ApiBaseQuery<Boolean> 
                 }
             }
             mQuery = mQuery.concat(")");
-         
+
         }
 
         System.out.println("QUERY = " + mQuery);

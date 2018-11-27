@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,10 +19,18 @@ import java.sql.SQLException;
 public class ApiConnection {
 
     private static Connection api;
+    private static String host;
+    private static int port;
+    private static String db;
+    private static String user;
+    private static String pass;
 
-    public static void setConnection(String host, int port, String db, String user, String password) {
-        api = createConnection(host, port, db, user, password);
-        
+    public static void setConnection(String hosts, int ports, String database, String username, String password) {
+        host = hosts;
+        port = ports;
+        db = database;
+        user = username;
+        pass = password;
     }
 
     public static Connection getConnection() {
@@ -28,7 +38,7 @@ public class ApiConnection {
     }
 
     public static void closeConnection() {
-        try {
+        try {            
             api.close();
         } catch (SQLException e) {
             System.out.println("Gagal Memutuskan koneksi : "+e.toString());
@@ -36,14 +46,21 @@ public class ApiConnection {
     }
     
     public static boolean isConnected(){
-        return api == null;
+        try {
+            return api != null || !api.isClosed();
+        } catch (SQLException ex) {
+            Logger.getLogger(ApiConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public static boolean hasSet(){
+        if(host != null && port != 0 && db != null && user != null && pass != null) return true;
+        else return false;
     }
 
-    private static Connection createConnection(String host, int port, String db, String user, String password) {
-        /* Declare and initialize a sql Connection variable. */
-        Connection ret = null;
+    public static void createConnection() {
         try {
-
             /* Register for jdbc driver class. */
             Class.forName("com.mysql.jdbc.Driver");
 
@@ -51,10 +68,10 @@ public class ApiConnection {
             String url = "jdbc:mysql://" + host + ":" + port + "/" + db;
 
             /* Get the Connection object. */
-            ret = DriverManager.getConnection(url, user, password);
+            api = DriverManager.getConnection(url, user, pass);
 
             /* Get related meta data for this mysql server to verify db connect successfully.. */
-            DatabaseMetaData dbmd = ret.getMetaData();
+            DatabaseMetaData dbmd = api.getMetaData();
 
             String dbName = dbmd.getDatabaseProductName();
 
@@ -78,8 +95,6 @@ public class ApiConnection {
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            return ret;
         }
     }
 

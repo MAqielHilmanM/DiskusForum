@@ -7,6 +7,8 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import static utils.Constant.VALID_EMAIL_ADDRESS_REGEX;
 
 /**
  *
@@ -19,5 +21,10 @@ public class Helper {
             lists.add(s[i]);
         }
         return lists;
+    }
+    
+    public static boolean checkEmailRegex(String email){
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+        return matcher.find();
     }
 }

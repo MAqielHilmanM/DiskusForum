@@ -97,20 +97,6 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
             mQuery = mQuery.concat("FROM ");
             
             mQuery = mQuery.concat(mTable);
-//            mQuery = mQuery.concat(mTables.get(0));
-//            if (mRelations.size() > 0) {
-//                int tableCount = 1;
-//                for (int i = 0; i < mRelations.size(); i++) {
-//                    if (mRelations.get(i).relation == Relation.NATURAL) {
-//                        mQuery = mQuery.concat("NATURAL ");
-//                        mQuery = mQuery.concat(mTables.get(tableCount));
-//                        mQuery = mQuery.concat(" ");
-//                        tableCount++;
-//                    }
-//                }
-//            } else {
-//                mQuery = mQuery.concat(" ");
-//            }
 
             if(!mWhere.isEmpty()){
                 mQuery = mQuery.concat(" WHERE "+mWhere);
@@ -124,8 +110,9 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
     @Override
     public List<T> execute() {
         List<T> lists = new ArrayList<T>();
-
         try {
+            if(!ApiConnection.hasSet()) throw new Exception("Connection Not Set");
+            ApiConnection.createConnection();
             Statement state = ApiConnection.getConnection().createStatement();
             prepareQuery();
             ResultSet rs = state.executeQuery(mQuery);
@@ -134,6 +121,7 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
                 throw new Exception("Table Class Not Found");
             }
             lists = mTableObject.toObjects(rs);
+            ApiConnection.closeConnection();
         } catch (Exception e) {
             System.err.println("READ QUERY ERROR :" + e);
         }

@@ -10,5 +10,14 @@ package home;
  * @author maqielhm
  */
 public class HomeController {
+    HomeModel model;
+    HomeView view;
+
+    public HomeController() {
+        model = new HomeModel();
+        view = new HomeView();
+        view.setVisible(true);
+    }
+    
     
 }

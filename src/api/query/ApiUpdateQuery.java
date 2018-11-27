@@ -76,13 +76,15 @@ public class ApiUpdateQuery<T extends BaseDao<T>> extends ApiBaseQuery<Boolean> 
     @Override
     public Boolean execute() {
         try {
+            if(!ApiConnection.hasSet()) throw new Exception("Connection Not Set");
+            ApiConnection.createConnection();
             Statement state = ApiConnection.getConnection().createStatement();
             prepareQuery();
             if (state.executeUpdate(mQuery) > 0) {
                 System.out.println("UPDATE Data Sucess");
                 return true;
             }
-
+            ApiConnection.closeConnection();
         } catch (Exception e) {
             System.err.println("UPDATE ERROR :" + e);
         }
