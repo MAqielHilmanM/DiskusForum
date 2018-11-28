@@ -766,6 +766,9 @@
                       <SubComponents>
                         <Component class="javax.swing.JList" name="lstHome">
                           <Properties>
+                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                              <Border info="null"/>
+                            </Property>
                             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
                               <StringArray count="5">
                                 <StringItem index="0" value="Item 1"/>
@@ -775,6 +778,7 @@
                                 <StringItem index="4" value="Item 5"/>
                               </StringArray>
                             </Property>
+                            <Property name="autoscrolls" type="boolean" value="false"/>
                           </Properties>
                           <AuxValues>
                             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

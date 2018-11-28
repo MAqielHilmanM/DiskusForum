@@ -480,11 +480,13 @@ public class HomeView extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel3.setText("Here are Some Hot Topics For You");
 
+        lstHome.setBorder(null);
         lstHome.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        lstHome.setAutoscrolls(false);
         jScrollPane1.setViewportView(lstHome);
 
         javax.swing.GroupLayout pnlSubHomeLLayout = new javax.swing.GroupLayout(pnlSubHomeL);
