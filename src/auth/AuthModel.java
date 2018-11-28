@@ -27,7 +27,7 @@ public class AuthModel implements BaseModel<AuthModel.Response, AuthModel.Reques
         String id;
         Boolean isUnique = false;
         do {
-            id = Tools.generateId("USER-", 10);
+            id = Tools.generateId("USER", 10);
             System.out.println("Generated id : "+id);
 
             ApiReadQuery<UserDao> readApi = new ApiReadQuery<>(new UserDao());

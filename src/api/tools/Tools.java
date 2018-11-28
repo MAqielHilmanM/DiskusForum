@@ -56,10 +56,10 @@ public class Tools {
     }
 
     public static String generateId(String codeType, int length) {
-        if (length > codeType.length()) {
-            int availableSpace = length - codeType.length();
-            int max = 10 * availableSpace;
-            int min = 10 * (availableSpace - 1);
+        if (length > codeType.length()+1) {
+            int availableSpace = length - (codeType.length()+1);
+            int max = (int) Math.pow(10, availableSpace);
+            int min = (int) Math.pow(10, availableSpace - 1);
 
             Random rand = new Random();
             int id = rand.nextInt(max - min) + min;
@@ -72,8 +72,8 @@ public class Tools {
 
     public static String generateId(int length) {
         int availableSpace = length;
-        int max = 10 * availableSpace;
-        int min = 10 * (availableSpace - 1);
+        int max = (int) Math.pow(10, availableSpace);
+        int min = (int) Math.pow(10, availableSpace - 1);
 
         Random rand = new Random();
         int id = rand.nextInt(max - min) + min;
@@ -89,5 +89,5 @@ public class Tools {
     public static String generateId(String codeType, int length, String define) {
         return codeType + "-" + define;
     }
-    
+
 }

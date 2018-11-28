@@ -39,7 +39,7 @@ public class AuthController implements BaseController {
                 view.showMessage("Oops. . . Please Check Your Ceredentials.", "Login Failed", 0);
             } else {
                 System.out.println("DATA FOUND");
-                new HomeController();
+                new HomeController(response.getId());
                 view.dispose();
             }
         } else {
