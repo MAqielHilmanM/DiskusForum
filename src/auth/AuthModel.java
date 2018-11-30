@@ -35,6 +35,7 @@ public class AuthModel implements BaseModel<AuthModel.Response, AuthModel.Reques
                     .showAllColumn()
                     .conditionEqual(UserDao.COLUMN_ID, id)
                     .execute();
+            
             if (datas.size() > 0) {
                 isUnique = true;
             } else {
@@ -86,6 +87,7 @@ public class AuthModel implements BaseModel<AuthModel.Response, AuthModel.Reques
         ApiReadQuery<AuthDao> api = new ApiReadQuery<>(new AuthDao());
         List<AuthDao> data = api
                 .showAllColumn()
+                .orderByAscending(UserDao.COLUMN_ID)
                 .conditionEqual(AuthDao.COLUMN_USERNAME, request.getUser())
                 .AND()
                 .conditionEqual(AuthDao.COLUMN_PASSWORD, Tools.encryptWithSHA1(request.getPass()))

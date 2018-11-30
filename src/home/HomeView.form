@@ -29,8 +29,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="pnlMainMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="pnlMain" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="pnlMain" pref="1033" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,23 +52,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="lblFoto" min="-2" pref="66" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="lblName" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="pnlProfile" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Component id="pnlMenu" max="32767" attributes="0"/>
                       <Component id="pnlLogOut" alignment="0" max="32767" attributes="0"/>
@@ -79,19 +68,9 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblFoto" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="lblName" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="pnlProfile" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Component id="pnlMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="pnlLogOut" min="-2" max="-2" attributes="0"/>
@@ -101,37 +80,92 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblFoto">
+        <Container class="javax.swing.JPanel" name="pnlProfile">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/src/images/ic_account_circle.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="jLabel1"/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Welcome Back,"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblName">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="18" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="M Aqiel Hielman"/>
-          </Properties>
-        </Component>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblFoto" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblName" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Component id="jSeparator8" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblFoto" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblName" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator8" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblFoto">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/src/images/ic_account_circle.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="jLabel1"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Welcome Back,"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblName">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="18" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="M Aqiel Hielman"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator8">
+            </Component>
+          </SubComponents>
+        </Container>
         <Container class="javax.swing.JPanel" name="pnlMenu">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -238,7 +272,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel10" min="-2" pref="41" max="-2" attributes="0"/>
-                          <EmptySpace pref="69" max="32767" attributes="0"/>
+                          <EmptySpace pref="81" max="32767" attributes="0"/>
                           <Component id="lblMyThread" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                           <Component id="jLabel12" min="-2" pref="56" max="-2" attributes="0"/>
@@ -438,13 +472,13 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                      <Component id="pnlSubLeft" min="-2" pref="522" max="-2" attributes="0"/>
-                      <EmptySpace pref="517" max="32767" attributes="0"/>
+                      <Component id="pnlSubLeft" min="-2" pref="488" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="545" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="520" max="32767" attributes="0"/>
-                          <Component id="pnlSubRight" min="-2" pref="519" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="487" max="32767" attributes="0"/>
+                          <Component id="pnlSubRight" min="-2" pref="546" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -481,7 +515,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane2" max="32767" attributes="0"/>
+                                  <Component id="spSubCommunityL" max="32767" attributes="0"/>
                                   <Component id="tfSearchCM" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -492,7 +526,7 @@
                                           </Group>
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace pref="290" max="32767" attributes="0"/>
+                                              <EmptySpace pref="256" max="32767" attributes="0"/>
                                               <Component id="btnCreateCM" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -515,8 +549,8 @@
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane2" pref="625" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="spSubCommunityL" min="-2" pref="617" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -551,30 +585,9 @@
                         <Property name="text" type="java.lang.String" value="Here Is All Of Diskus Community"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
+                    <Container class="javax.swing.JScrollPane" name="spSubCommunityL">
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JList" name="lstCommunity">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
-                                <StringItem index="4" value="Item 5"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
-                        </Component>
-                      </SubComponents>
                     </Container>
                   </SubComponents>
                 </Container>
@@ -596,8 +609,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane5" max="32767" attributes="0"/>
-                                  <Component id="tfSearchT" pref="498" max="32767" attributes="0"/>
+                                  <Component id="spSubMyThreadL" max="32767" attributes="0"/>
+                                  <Component id="tfSearchT" pref="464" max="32767" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       <Component id="btnCreateT" min="-2" max="-2" attributes="0"/>
@@ -626,8 +639,8 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel30" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane5" pref="600" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="spSubMyThreadL" min="-2" pref="583" max="-2" attributes="0"/>
+                              <EmptySpace pref="21" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -659,30 +672,9 @@
                         <Property name="text" type="java.lang.String" value="Here Is All Of Your Topics"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane5">
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
+                    <Container class="javax.swing.JScrollPane" name="spSubMyThreadL">
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JList" name="lstThread">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
-                                <StringItem index="4" value="Item 5"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
-                        </Component>
-                      </SubComponents>
                     </Container>
                   </SubComponents>
                 </Container>
@@ -699,15 +691,15 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tfSearch" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="251" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="217" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="tfSearch" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="spSubHomeL" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -722,9 +714,9 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" pref="602" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="spSubHomeL" min="-2" pref="596" max="-2" attributes="0"/>
+                              <EmptySpace pref="24" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -757,34 +749,9 @@
                         <Property name="text" type="java.lang.String" value="Here are Some Hot Topics For You"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
+                    <Container class="javax.swing.JScrollPane" name="spSubHomeL">
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JList" name="lstHome">
-                          <Properties>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="null"/>
-                            </Property>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
-                                <StringItem index="4" value="Item 5"/>
-                              </StringArray>
-                            </Property>
-                            <Property name="autoscrolls" type="boolean" value="false"/>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
-                        </Component>
-                      </SubComponents>
                     </Container>
                   </SubComponents>
                 </Container>
@@ -795,6 +762,11 @@
               <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
               <SubComponents>
                 <Container class="javax.swing.JPanel" name="pnlSubMyThreadR">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ef" green="ea" red="9c" type="rgb"/>
+                    </Property>
+                  </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                       <CardConstraints cardName="card4"/>
@@ -804,29 +776,202 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
-                              <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="217" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                                      <Component id="lblTitleThreadMT" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="lblNameMyThread1" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblPercentageMT" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jLabel31" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblCountMT" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblTotalMT" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="lblDateMT" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblTimeMT" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="152" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="spSubMyThreadRBody" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="btnInvite1" max="32767" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="btnLeave1" min="-2" pref="247" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="spSubMyThreadRComment" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="297" max="-2" attributes="0"/>
-                              <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="437" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblTitleThreadMT" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblNameMyThread1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblPercentageMT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblCountMT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTotalMT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblDateMT" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTimeMT" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="spSubMyThreadRBody" min="-2" pref="368" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel34" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="spSubMyThreadRComment" pref="206" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="btnInvite1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="btnLeave1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel28">
+                    <Component class="javax.swing.JLabel" name="lblTitleThreadMT">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel28"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Dialog" size="18" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Test A"/>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="lblNameMyThread1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Trusted Average :"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblPercentageMT">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="0%"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel31">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="("/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblCountMT">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel32">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Of"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblTotalMT">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="0"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel33">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value=")"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblDateMT">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Monday, 1 January 2000"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lblTimeMT">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="00:00 Am"/>
+                      </Properties>
+                    </Component>
+                    <Container class="javax.swing.JScrollPane" name="spSubMyThreadRBody">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTextArea" name="taSubMyThreadRBody">
+                          <Properties>
+                            <Property name="columns" type="int" value="20"/>
+                            <Property name="rows" type="int" value="5"/>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Component class="javax.swing.JButton" name="btnInvite1">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f9" green="ff" red="c4" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Edit"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInvite1ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="btnLeave1">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="f9" green="ff" red="c4" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Delete"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLeave1ActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel34">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Dialog" size="18" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Comment"/>
+                      </Properties>
+                    </Component>
+                    <Container class="javax.swing.JScrollPane" name="spSubMyThreadRComment">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                    </Container>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="pnlSubHomeR">
@@ -846,20 +991,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jScrollPane3" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
                                               <Component id="lblFotoHome" min="-2" pref="66" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="lblNameHome" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="lblCommunityNameHome" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="lblTitle" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -871,56 +1010,71 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="lblStatus" min="-2" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="lblCommunityNameHome" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
+                                          <Component id="spSubHomeRComment" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane4" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="spSubHomeRBody" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                                              <Component id="lblDays" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="lblTime" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="lblPercent" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="lblPeople" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="lblSum" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblPercent" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblPeople" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblSum" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                                       <Component id="lblTitleArticle" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel38" min="-2" pref="520" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="lblDays" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblTime" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblTitleArticle" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -938,21 +1092,17 @@
                                   <Component id="lblTime" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="247" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="lblFotoHome" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="spSubHomeRBody" pref="287" max="32767" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblNameHome" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
+                                      <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lblCommunityNameHome" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="lblTitle" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -961,10 +1111,15 @@
                                           <Component id="lblStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="lblFotoHome" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane4" pref="297" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="jLabel38" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Component id="spSubHomeRComment" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1023,7 +1178,7 @@
                         <Property name="text" type="java.lang.String" value="00:00 Am"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                    <Container class="javax.swing.JScrollPane" name="spSubHomeRBody">
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                       </AuxValues>
@@ -1092,28 +1247,72 @@
                         <Property name="text" type="java.lang.String" value="Offline"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane4">
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
+                    <Component class="javax.swing.JLabel" name="jLabel38">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Dialog" size="18" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Comment"/>
+                      </Properties>
+                    </Component>
+                    <Container class="javax.swing.JScrollPane" name="spSubHomeRComment">
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                    </Container>
+                    <Container class="javax.swing.JPanel" name="jPanel1">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="c7" green="cc" red="3d" type="rgb"/>
+                        </Property>
+                      </Properties>
+
+                      <Layout>
+                        <DimensionLayout dim="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblSubHomeRLike" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfSubHomeRComment" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblSubHomeRSend" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                        <DimensionLayout dim="1">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="tfSubHomeRComment" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblSubHomeRLike" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblSubHomeRSend" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                        </DimensionLayout>
+                      </Layout>
                       <SubComponents>
-                        <Component class="javax.swing.JList" name="lstComment">
+                        <Component class="javax.swing.JTextField" name="tfSubHomeRComment">
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfSubHomeRCommentActionPerformed"/>
+                          </Events>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblSubHomeRLike">
                           <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
-                                <StringItem index="4" value="Item 5"/>
-                              </StringArray>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/src/images/ic_thumbup_small.png"/>
                             </Property>
                           </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="lblSubHomeRSend">
+                          <Properties>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/src/images/ic_send_black_small.png"/>
+                            </Property>
+                          </Properties>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -1137,127 +1336,124 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jLabel23" pref="0" max="32767" attributes="0"/>
-                                                  <Component id="jLabel18" min="-2" pref="48" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="lblThreadCountC" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="lblMemberCounterC" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Group type="102" alignment="0" attributes="0">
-                                                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                                              <Component id="lblCommunityName" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                              <Group type="102" alignment="1" attributes="0">
-                                                                  <Component id="lblDateCommunity" min="-2" max="-2" attributes="0"/>
-                                                                  <EmptySpace max="-2" attributes="0"/>
-                                                                  <Component id="lblTimeCommunity" min="-2" max="-2" attributes="0"/>
-                                                              </Group>
-                                                              <Group type="102" alignment="1" attributes="0">
-                                                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
-                                                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                                                  <Component id="lblNameCommunity" min="-2" max="-2" attributes="0"/>
-                                                                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                                              </Group>
-                                                          </Group>
-                                                          <Group type="102" attributes="0">
-                                                              <Component id="jLabel24" min="-2" max="-2" attributes="0"/>
-                                                              <EmptySpace max="-2" attributes="0"/>
-                                                              <Component id="lblTotalMemberC" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                  </Group>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="0" pref="180" max="32767" attributes="0"/>
+                                      <EmptySpace min="219" pref="219" max="-2" attributes="0"/>
+                                      <Component id="lblCommunityName" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="taCommunityDesc" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane8" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="btnInvite" max="32767" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="btnLeave" min="-2" pref="299" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="239" pref="239" max="-2" attributes="0"/>
+                                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="lblNameCommunity" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="179" pref="179" max="-2" attributes="0"/>
+                                      <Component id="lblDateCommunity" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Component id="lblTimeCommunity" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="100" pref="100" max="-2" attributes="0"/>
+                                      <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="lblMemberCounterC" min="-2" pref="20" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                              <Component id="jLabel24" min="-2" pref="20" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
+                                      <Component id="lblTotalMemberC" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                                      <Component id="jLabel18" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="lblThreadCountC" min="-2" pref="20" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="taCommunityDesc" min="-2" pref="522" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="spSubCommunityRMember" min="-2" pref="520" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="spSubCommunityRThread" min="-2" pref="520" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="btnInvite" min="-2" pref="270" max="-2" attributes="0"/>
+                                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                                      <Component id="btnLeave" min="-2" pref="230" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
+                              <Component id="lblCommunityName" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNameCommunity" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblDateCommunity" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTimeCommunity" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="lblCommunityName" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel37" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lblMemberCounterC" min="-2" pref="20" max="-2" attributes="0"/>
+                                                  <Component id="jLabel24" min="-2" pref="20" max="-2" attributes="0"/>
+                                                  <Component id="lblTotalMemberC" min="-2" pref="20" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="3" attributes="0">
+                                                      <Component id="jLabel26" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                                      <Component id="lblThreadCountC" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblNameCommunity" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="jLabel18" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblDateCommunity" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTimeCommunity" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblMemberCounterC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTotalMemberC" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblThreadCountC" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="taCommunityDesc" min="-2" pref="176" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="taCommunityDesc" min="-2" pref="230" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jScrollPane8" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
+                              <Component id="spSubCommunityRMember" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                               <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jScrollPane7" min="-2" pref="107" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnInvite" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="btnLeave" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
+                              <Component id="spSubCommunityRThread" min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="btnInvite" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="btnLeave" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1266,7 +1462,7 @@
                     <Component class="javax.swing.JLabel" name="lblCommunityName">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Dialog" size="14" style="1"/>
+                          <Font name="Dialog" size="18" style="1"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Community Name"/>
                       </Properties>
@@ -1291,58 +1487,46 @@
                         <Property name="text" type="java.lang.String" value="00:00 Am"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel18">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/src/images/ic_group_white.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="jLabel18"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="lblMemberCounterC">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                          <Color blue="1" green="1" red="1" type="rgb"/>
                         </Property>
+                        <Property name="horizontalAlignment" type="int" value="2"/>
                         <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel24">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                          <Color blue="1" green="1" red="1" type="rgb"/>
                         </Property>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" value="Of"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblTotalMemberC">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                          <Color blue="1" green="1" red="1" type="rgb"/>
                         </Property>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" value="0"/>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel23">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/src/images/ic_description_white.png"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="jLabel23"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblThreadCountC">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                          <Color blue="1" green="1" red="1" type="rgb"/>
                         </Property>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel26">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                          <Color blue="1" green="1" red="1" type="rgb"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Thread Has been Posted"/>
                       </Properties>
@@ -1375,56 +1559,6 @@
                         <Property name="rows" type="int" value="5"/>
                       </Properties>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane8">
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
-
-                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JList" name="lstCommunityMember">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
-                                <StringItem index="4" value="Item 5"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
-                        </Component>
-                      </SubComponents>
-                    </Container>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane7">
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
-
-                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JList" name="lstCommunityThread">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="5">
-                                <StringItem index="0" value="Item 1"/>
-                                <StringItem index="1" value="Item 2"/>
-                                <StringItem index="2" value="Item 3"/>
-                                <StringItem index="3" value="Item 4"/>
-                                <StringItem index="4" value="Item 5"/>
-                              </StringArray>
-                            </Property>
-                          </Properties>
-                          <AuxValues>
-                            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-                          </AuxValues>
-                        </Component>
-                      </SubComponents>
-                    </Container>
                     <Component class="javax.swing.JButton" name="btnInvite">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Invite"/>
@@ -1441,13 +1575,40 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLeaveActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel37">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/src/images/ic_group_black_small.png"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel18">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/src/images/ic_description_black_small.png"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                    <Container class="javax.swing.JScrollPane" name="spSubCommunityRMember">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                    </Container>
+                    <Container class="javax.swing.JScrollPane" name="spSubCommunityRThread">
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                    </Container>
                   </SubComponents>
                 </Container>
               </SubComponents>
             </Container>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="pnlProfile">
+        <Container class="javax.swing.JPanel" name="pnlSubProfile">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f9" green="ff" red="c4" type="rgb"/>
+            </Property>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="card3"/>
@@ -1457,15 +1618,380 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1039" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lblYearProfile" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="lblPosition1Profile" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="lblPosition2Profile" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="373" max="-2" attributes="0"/>
+                                      <Component id="lblPosition3Profile" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jSeparator7" alignment="1" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblCountryNameProfile" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="jSeparator1" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                                              <Component id="lblNameProfile3" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblTelephoneProfile" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jSeparator4" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblNameProfile5" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="lblGenderProfile" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace pref="206" max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Group type="103" groupAlignment="0" attributes="0">
+                                                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                                              <Component id="lblPostCountProfile" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="jSeparator5" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
+                                                              <Group type="102" alignment="0" attributes="0">
+                                                                  <Component id="lblNameProfile6" min="-2" max="-2" attributes="0"/>
+                                                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                              </Group>
+                                                          </Group>
+                                                          <Component id="lblNameProfile2" alignment="0" min="-2" pref="112" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="lblNameProfile4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jSeparator3" alignment="0" min="-2" pref="188" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="lblCommunityProfile" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jSeparator6" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="0" attributes="0">
+                                                      <Component id="lblNameProfile7" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblNameProfile8" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="lblEmailProfile" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="525" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="451" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblNicknameProfile" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNameProfile" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="383" max="-2" attributes="0"/>
+                              <Component id="lblNameProfile1" min="-2" pref="213" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="431" max="-2" attributes="0"/>
+                              <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="749" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lblNameProfile" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblEmailProfile" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblNicknameProfile" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblNameProfile1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="49" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblNameProfile3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblNameProfile2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblNameProfile4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jSeparator2" alignment="1" min="-2" pref="10" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Component id="jSeparator3" alignment="1" min="-2" pref="10" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblGenderProfile" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCountryNameProfile" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblYearProfile" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblNameProfile5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="jSeparator4" min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblTelephoneProfile" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblNameProfile6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="jSeparator5" min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblPostCountProfile" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="lblNameProfile7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Component id="jSeparator6" min="-2" pref="10" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblCommunityProfile" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="lblNameProfile8" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jSeparator7" min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblPosition3Profile" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPosition2Profile" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblPosition1Profile" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="55" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel35">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/src/images/ic_account_black_semiMedium.png"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNameProfile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Name"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblEmailProfile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Email"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNicknameProfile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Nickname"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNameProfile1">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="33" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&quot;User Title&quot;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNameProfile2">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Gender"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator1">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCountryNameProfile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Country_Name"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNameProfile3">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Country"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator2">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblGenderProfile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Gender"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNameProfile4">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Member Since"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator3">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblYearProfile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="1 January 2000"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNameProfile5">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Telephone"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator4">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblTelephoneProfile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Telephone_Number"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNameProfile6">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Total Post"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator5">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblPostCountProfile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Post_Count"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNameProfile7">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Community"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator6">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCommunityProfile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Community_Name"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblNameProfile8">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Top 3 Community Position"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JSeparator" name="jSeparator7">
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblPosition3Profile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Test 3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblPosition1Profile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Test 1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblPosition2Profile">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Dialog" size="23" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Test 2"/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>

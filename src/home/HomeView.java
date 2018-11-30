@@ -5,10 +5,26 @@
  */
 package home;
 
+import api.daos.CommentDao;
+import home.comment.CommentModel;
+import home.comment.CommentRows;
+import home.community.CommunityModel;
+import home.community.CommunityRows;
+import home.community_thread.CommunityThreadModel;
+import home.community_thread.CommunityThreadRows;
+import home.hot_thread.HotThreadModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
 import javax.swing.JFrame;
 import home.hot_thread.HotThreadRows;
+import home.member.MemberModel;
+import home.member.MemberRows;
+import home.my_thread.MyThreadModel;
+import home.my_thread.MyThreadRows;
+import java.util.Date;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -19,10 +35,38 @@ public class HomeView extends javax.swing.JFrame {
     /**
      * Creates new form HomeView
      */
+    JList lstSubHomeL = new JList();
+    JList lstSubMyThreadL = new JList();
+    JList lstSubCommunityL = new JList();
+
+    JList lstSubHomeR = new JList();
+    JList lstSubMyThreadR = new JList();
+    JList lstSubCommunityRThread = new JList();
+    JList lstSubCommunityRMember = new JList();
+
     public HomeView() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        lstHome.setCellRenderer(new HotThreadRows());
+//        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        lstSubHomeL.setCellRenderer(new HotThreadRows());
+        lstSubCommunityL.setCellRenderer(new CommunityRows());
+        lstSubMyThreadL.setCellRenderer(new MyThreadRows());
+        lstSubHomeR.setCellRenderer(new CommentRows());
+        lstSubMyThreadR.setCellRenderer(new CommentRows());
+        lstSubCommunityRMember.setCellRenderer(new MemberRows());
+        lstSubCommunityRThread.setCellRenderer(new CommunityThreadRows());
+        
+        setScrollPanelList(spSubHomeL, lstSubHomeL);
+        setScrollPanelList(spSubHomeRComment, lstSubHomeR);
+        setScrollPanelList(spSubCommunityL, lstSubCommunityL);
+        setScrollPanelList(spSubCommunityRMember, lstSubCommunityRMember);
+        setScrollPanelList(spSubCommunityRThread, lstSubCommunityRThread);
+        setScrollPanelList(spSubMyThreadL, lstSubMyThreadL);
+        setScrollPanelList(spSubMyThreadRComment, lstSubMyThreadR);
+    }
+
+    public void setScrollPanelList(JScrollPane scrollPanel, JList list) {
+        scrollPanel.setViewportView(list);
+        scrollPanel.setBorder(null);
     }
 
     /**
@@ -35,9 +79,11 @@ public class HomeView extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlMainMenu = new javax.swing.JPanel();
+        pnlProfile = new javax.swing.JPanel();
         lblFoto = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblName = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
         pnlMenu = new javax.swing.JPanel();
         pnlMnCommunity = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -63,24 +109,36 @@ public class HomeView extends javax.swing.JFrame {
         btnCreateCM = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        lstCommunity = new javax.swing.JList<>();
+        spSubCommunityL = new javax.swing.JScrollPane();
         pnlSubMyThreadL = new javax.swing.JPanel();
         tfSearchT = new javax.swing.JTextField();
         btnCreateT = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        lstThread = new javax.swing.JList<>();
+        spSubMyThreadL = new javax.swing.JScrollPane();
         pnlSubHomeL = new javax.swing.JPanel();
         tfSearch = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lstHome = new javax.swing.JList<>();
+        spSubHomeL = new javax.swing.JScrollPane();
         pnlSubRight = new javax.swing.JPanel();
         pnlSubMyThreadR = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
+        lblTitleThreadMT = new javax.swing.JLabel();
+        lblNameMyThread1 = new javax.swing.JLabel();
+        lblPercentageMT = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        lblCountMT = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        lblTotalMT = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        lblDateMT = new javax.swing.JLabel();
+        lblTimeMT = new javax.swing.JLabel();
+        spSubMyThreadRBody = new javax.swing.JScrollPane();
+        taSubMyThreadRBody = new javax.swing.JTextArea();
+        btnInvite1 = new javax.swing.JButton();
+        btnLeave1 = new javax.swing.JButton();
+        jLabel34 = new javax.swing.JLabel();
+        spSubMyThreadRComment = new javax.swing.JScrollPane();
         pnlSubHomeR = new javax.swing.JPanel();
         lblTitleArticle = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -92,7 +150,7 @@ public class HomeView extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         lblDays = new javax.swing.JLabel();
         lblTime = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        spSubHomeRBody = new javax.swing.JScrollPane();
         taArticle = new javax.swing.JTextArea();
         lblFotoHome = new javax.swing.JLabel();
         lblNameHome = new javax.swing.JLabel();
@@ -103,37 +161,69 @@ public class HomeView extends javax.swing.JFrame {
         lblPostCount = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        lstComment = new javax.swing.JList<>();
+        jLabel38 = new javax.swing.JLabel();
+        spSubHomeRComment = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        tfSubHomeRComment = new javax.swing.JTextField();
+        lblSubHomeRLike = new javax.swing.JLabel();
+        lblSubHomeRSend = new javax.swing.JLabel();
         pnlSubCommunityR = new javax.swing.JPanel();
         lblCommunityName = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         lblNameCommunity = new javax.swing.JLabel();
         lblDateCommunity = new javax.swing.JLabel();
         lblTimeCommunity = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
         lblMemberCounterC = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         lblTotalMemberC = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
         lblThreadCountC = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         taCommunityDesc = new javax.swing.JTextArea();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        lstCommunityMember = new javax.swing.JList<>();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        lstCommunityThread = new javax.swing.JList<>();
         btnInvite = new javax.swing.JButton();
         btnLeave = new javax.swing.JButton();
-        pnlProfile = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        spSubCommunityRMember = new javax.swing.JScrollPane();
+        spSubCommunityRThread = new javax.swing.JScrollPane();
+        pnlSubProfile = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        lblNameProfile = new javax.swing.JLabel();
+        lblEmailProfile = new javax.swing.JLabel();
+        lblNicknameProfile = new javax.swing.JLabel();
+        lblNameProfile1 = new javax.swing.JLabel();
+        lblNameProfile2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lblCountryNameProfile = new javax.swing.JLabel();
+        lblNameProfile3 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        lblGenderProfile = new javax.swing.JLabel();
+        lblNameProfile4 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        lblYearProfile = new javax.swing.JLabel();
+        lblNameProfile5 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        lblTelephoneProfile = new javax.swing.JLabel();
+        lblNameProfile6 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        lblPostCountProfile = new javax.swing.JLabel();
+        lblNameProfile7 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        lblCommunityProfile = new javax.swing.JLabel();
+        lblNameProfile8 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        lblPosition3Profile = new javax.swing.JLabel();
+        lblPosition1Profile = new javax.swing.JLabel();
+        lblPosition2Profile = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1366, 720));
         setResizable(false);
 
         pnlMainMenu.setBackground(new java.awt.Color(61, 204, 199));
+
+        pnlProfile.setOpaque(false);
 
         lblFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_account_circle.png"))); // NOI18N
         lblFoto.setText("jLabel1");
@@ -146,6 +236,42 @@ public class HomeView extends javax.swing.JFrame {
         lblName.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblName.setForeground(new java.awt.Color(255, 255, 255));
         lblName.setText("M Aqiel Hielman");
+
+        javax.swing.GroupLayout pnlProfileLayout = new javax.swing.GroupLayout(pnlProfile);
+        pnlProfile.setLayout(pnlProfileLayout);
+        pnlProfileLayout.setHorizontalGroup(
+            pnlProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProfileLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlProfileLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
+                    .addGroup(pnlProfileLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblName)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlProfileLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jSeparator8)
+                .addContainerGap())
+        );
+        pnlProfileLayout.setVerticalGroup(
+            pnlProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProfileLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFoto)
+                    .addGroup(pnlProfileLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblName)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator8)
+                .addContainerGap())
+        );
 
         pnlMenu.setBackground(new java.awt.Color(61, 204, 199));
 
@@ -198,7 +324,7 @@ public class HomeView extends javax.swing.JFrame {
             pnlMnMyThreadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMnMyThreadLayout.createSequentialGroup()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(lblMyThread)
                 .addGap(59, 59, 59)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -306,36 +432,21 @@ public class HomeView extends javax.swing.JFrame {
         pnlMainMenu.setLayout(pnlMainMenuLayout);
         pnlMainMenuLayout.setHorizontalGroup(
             pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMainMenuLayout.createSequentialGroup()
+            .addGroup(pnlMainMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlMainMenuLayout.createSequentialGroup()
-                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlMainMenuLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(pnlMainMenuLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblName)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(pnlProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addComponent(pnlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         pnlMainMenuLayout.setVerticalGroup(
             pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMainMenuLayout.createSequentialGroup()
-                .addGroup(pnlMainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlMainMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblFoto))
-                    .addGroup(pnlMainMenuLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblName)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(pnlProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(pnlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,13 +475,6 @@ public class HomeView extends javax.swing.JFrame {
 
         jLabel5.setText("Here Is All Of Diskus Community");
 
-        lstCommunity.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(lstCommunity);
-
         javax.swing.GroupLayout pnlSubCommunityLLayout = new javax.swing.GroupLayout(pnlSubCommunityL);
         pnlSubCommunityL.setLayout(pnlSubCommunityLLayout);
         pnlSubCommunityLLayout.setHorizontalGroup(
@@ -378,7 +482,7 @@ public class HomeView extends javax.swing.JFrame {
             .addGroup(pnlSubCommunityLLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlSubCommunityLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
+                    .addComponent(spSubCommunityL)
                     .addComponent(tfSearchCM)
                     .addGroup(pnlSubCommunityLLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -388,7 +492,7 @@ public class HomeView extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(pnlSubCommunityLLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
                                 .addComponent(btnCreateCM)))))
                 .addContainerGap())
         );
@@ -404,8 +508,8 @@ public class HomeView extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(spSubCommunityL, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pnlSubLeft.add(pnlSubCommunityL, "card3");
@@ -422,13 +526,6 @@ public class HomeView extends javax.swing.JFrame {
 
         jLabel30.setText("Here Is All Of Your Topics");
 
-        lstThread.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane5.setViewportView(lstThread);
-
         javax.swing.GroupLayout pnlSubMyThreadLLayout = new javax.swing.GroupLayout(pnlSubMyThreadL);
         pnlSubMyThreadL.setLayout(pnlSubMyThreadLLayout);
         pnlSubMyThreadLLayout.setHorizontalGroup(
@@ -436,8 +533,8 @@ public class HomeView extends javax.swing.JFrame {
             .addGroup(pnlSubMyThreadLLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlSubMyThreadLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
-                    .addComponent(tfSearchT, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                    .addComponent(spSubMyThreadL)
+                    .addComponent(tfSearchT, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubMyThreadLLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnCreateT))
@@ -460,8 +557,8 @@ public class HomeView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel30)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(spSubMyThreadL, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pnlSubLeft.add(pnlSubMyThreadL, "card4");
@@ -480,15 +577,6 @@ public class HomeView extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel3.setText("Here are Some Hot Topics For You");
 
-        lstHome.setBorder(null);
-        lstHome.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        lstHome.setAutoscrolls(false);
-        jScrollPane1.setViewportView(lstHome);
-
         javax.swing.GroupLayout pnlSubHomeLLayout = new javax.swing.GroupLayout(pnlSubHomeL);
         pnlSubHomeL.setLayout(pnlSubHomeLLayout);
         pnlSubHomeLLayout.setHorizontalGroup(
@@ -496,13 +584,13 @@ public class HomeView extends javax.swing.JFrame {
             .addGroup(pnlSubHomeLLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlSubHomeLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfSearch)
                     .addGroup(pnlSubHomeLLayout.createSequentialGroup()
                         .addGroup(pnlSubHomeLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel1))
-                        .addGap(0, 251, Short.MAX_VALUE))
-                    .addComponent(tfSearch)
-                    .addComponent(jScrollPane1))
+                        .addGap(0, 217, Short.MAX_VALUE))
+                    .addComponent(spSubHomeL))
                 .addContainerGap())
         );
         pnlSubHomeLLayout.setVerticalGroup(
@@ -514,32 +602,137 @@ public class HomeView extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spSubHomeL, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pnlSubLeft.add(pnlSubHomeL, "card2");
 
         pnlSubRight.setLayout(new java.awt.CardLayout());
 
-        jLabel28.setText("jLabel28");
+        pnlSubMyThreadR.setBackground(new java.awt.Color(156, 234, 239));
+
+        lblTitleThreadMT.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblTitleThreadMT.setText("Test A");
+
+        lblNameMyThread1.setText("Trusted Average :");
+
+        lblPercentageMT.setText("0%");
+
+        jLabel31.setText("(");
+
+        lblCountMT.setText("0");
+
+        jLabel32.setText("Of");
+
+        lblTotalMT.setText("0");
+
+        jLabel33.setText(")");
+
+        lblDateMT.setText("Monday, 1 January 2000");
+
+        lblTimeMT.setText("00:00 Am");
+
+        taSubMyThreadRBody.setColumns(20);
+        taSubMyThreadRBody.setRows(5);
+        spSubMyThreadRBody.setViewportView(taSubMyThreadRBody);
+
+        btnInvite1.setBackground(new java.awt.Color(196, 255, 249));
+        btnInvite1.setText("Edit");
+        btnInvite1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInvite1ActionPerformed(evt);
+            }
+        });
+
+        btnLeave1.setBackground(new java.awt.Color(196, 255, 249));
+        btnLeave1.setText("Delete");
+        btnLeave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLeave1ActionPerformed(evt);
+            }
+        });
+
+        jLabel34.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel34.setText("Comment");
 
         javax.swing.GroupLayout pnlSubMyThreadRLayout = new javax.swing.GroupLayout(pnlSubMyThreadR);
         pnlSubMyThreadR.setLayout(pnlSubMyThreadRLayout);
         pnlSubMyThreadRLayout.setHorizontalGroup(
             pnlSubMyThreadRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(jLabel28)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addGroup(pnlSubMyThreadRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
+                        .addGroup(pnlSubMyThreadRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
+                                .addGap(167, 167, 167)
+                                .addGroup(pnlSubMyThreadRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
+                                        .addGap(59, 59, 59)
+                                        .addComponent(lblTitleThreadMT))
+                                    .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
+                                        .addComponent(lblNameMyThread1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblPercentageMT)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel31)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblCountMT)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel32)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblTotalMT)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel33))
+                                    .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
+                                        .addComponent(lblDateMT)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblTimeMT))))
+                            .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel34)))
+                        .addGap(0, 152, Short.MAX_VALUE))
+                    .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlSubMyThreadRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spSubMyThreadRBody)
+                            .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
+                                .addComponent(btnInvite1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnLeave1, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(spSubMyThreadRComment))))
+                .addContainerGap())
         );
         pnlSubMyThreadRLayout.setVerticalGroup(
             pnlSubMyThreadRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSubMyThreadRLayout.createSequentialGroup()
-                .addGap(297, 297, 297)
-                .addComponent(jLabel28)
-                .addContainerGap(437, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(lblTitleThreadMT)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSubMyThreadRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNameMyThread1)
+                    .addComponent(lblPercentageMT)
+                    .addComponent(jLabel31)
+                    .addComponent(lblCountMT)
+                    .addComponent(jLabel32)
+                    .addComponent(lblTotalMT)
+                    .addComponent(jLabel33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSubMyThreadRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDateMT)
+                    .addComponent(lblTimeMT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spSubMyThreadRBody, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spSubMyThreadRComment, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSubMyThreadRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInvite1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLeave1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pnlSubRight.add(pnlSubMyThreadR, "card4");
@@ -569,7 +762,7 @@ public class HomeView extends javax.swing.JFrame {
 
         taArticle.setColumns(20);
         taArticle.setRows(5);
-        jScrollPane3.setViewportView(taArticle);
+        spSubHomeRBody.setViewportView(taArticle);
 
         lblFotoHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_account_circle.png"))); // NOI18N
         lblFotoHome.setText("jLabel16");
@@ -592,12 +785,44 @@ public class HomeView extends javax.swing.JFrame {
 
         lblStatus.setText("Offline");
 
-        lstComment.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jLabel38.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel38.setText("Comment");
+
+        jPanel1.setBackground(new java.awt.Color(61, 204, 199));
+
+        tfSubHomeRComment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSubHomeRCommentActionPerformed(evt);
+            }
         });
-        jScrollPane4.setViewportView(lstComment);
+
+        lblSubHomeRLike.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_thumbup_small.png"))); // NOI18N
+
+        lblSubHomeRSend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_send_black_small.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSubHomeRLike)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfSubHomeRComment)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblSubHomeRSend)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfSubHomeRComment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSubHomeRLike)
+                    .addComponent(lblSubHomeRSend))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout pnlSubHomeRLayout = new javax.swing.GroupLayout(pnlSubHomeR);
         pnlSubHomeR.setLayout(pnlSubHomeRLayout);
@@ -605,19 +830,14 @@ public class HomeView extends javax.swing.JFrame {
             pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSubHomeRLayout.createSequentialGroup()
                 .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlSubHomeRLayout.createSequentialGroup()
-                        .addContainerGap()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubHomeRLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3)
                             .addGroup(pnlSubHomeRLayout.createSequentialGroup()
                                 .addComponent(lblFotoHome, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNameHome)
-                                    .addGroup(pnlSubHomeRLayout.createSequentialGroup()
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblCommunityNameHome))
                                     .addGroup(pnlSubHomeRLayout.createSequentialGroup()
                                         .addComponent(lblTitle)
                                         .addGap(18, 18, 18)
@@ -627,44 +847,55 @@ public class HomeView extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel21)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lblStatus)))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                        .addComponent(lblStatus))
+                                    .addGroup(pnlSubHomeRLayout.createSequentialGroup()
+                                        .addComponent(jLabel16)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblCommunityNameHome)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(spSubHomeRComment)))
                     .addGroup(pnlSubHomeRLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane4)))
+                        .addContainerGap()
+                        .addComponent(spSubHomeRBody))
+                    .addGroup(pnlSubHomeRLayout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlSubHomeRLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(lblDays)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblTime))
+                            .addGroup(pnlSubHomeRLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPercent)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblPeople)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblSum)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel19)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubHomeRLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlSubHomeRLayout.createSequentialGroup()
                 .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSubHomeRLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPercent)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPeople)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblSum)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19))
+                        .addGap(142, 142, 142)
+                        .addComponent(lblTitleArticle))
                     .addGroup(pnlSubHomeRLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lblTitleArticle)))
-                .addGap(171, 171, 171))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubHomeRLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblDays)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTime)
-                .addGap(197, 197, 197))
+                        .addContainerGap()
+                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         pnlSubHomeRLayout.setVerticalGroup(
             pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSubHomeRLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(lblTitleArticle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -680,35 +911,37 @@ public class HomeView extends javax.swing.JFrame {
                     .addComponent(lblDays)
                     .addComponent(lblTime))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(spSubHomeRBody, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSubHomeRLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lblFotoHome))
-                    .addGroup(pnlSubHomeRLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
                         .addComponent(lblNameHome)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(4, 4, 4)
                         .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(lblCommunityNameHome))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(pnlSubHomeRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTitle)
                             .addComponent(jLabel20)
                             .addComponent(lblPostCount)
                             .addComponent(jLabel21)
-                            .addComponent(lblStatus))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                .addContainerGap())
+                            .addComponent(lblStatus)))
+                    .addComponent(lblFotoHome))
+                .addGap(0, 0, 0)
+                .addComponent(jLabel38)
+                .addGap(9, 9, 9)
+                .addComponent(spSubHomeRComment, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         pnlSubRight.add(pnlSubHomeR, "card4");
 
         pnlSubCommunityR.setBackground(new java.awt.Color(156, 234, 239));
 
-        lblCommunityName.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblCommunityName.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblCommunityName.setText("Community Name");
 
         jLabel22.setText("Created by : ");
@@ -719,25 +952,23 @@ public class HomeView extends javax.swing.JFrame {
 
         lblTimeCommunity.setText("00:00 Am");
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_group_white.png"))); // NOI18N
-        jLabel18.setText("jLabel18");
-
-        lblMemberCounterC.setForeground(new java.awt.Color(255, 255, 255));
+        lblMemberCounterC.setForeground(new java.awt.Color(1, 1, 1));
+        lblMemberCounterC.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblMemberCounterC.setText("0");
 
-        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("Of");
 
-        lblTotalMemberC.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotalMemberC.setForeground(new java.awt.Color(1, 1, 1));
+        lblTotalMemberC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTotalMemberC.setText("0");
 
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_description_white.png"))); // NOI18N
-        jLabel23.setText("jLabel23");
-
-        lblThreadCountC.setForeground(new java.awt.Color(255, 255, 255));
+        lblThreadCountC.setForeground(new java.awt.Color(1, 1, 1));
+        lblThreadCountC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblThreadCountC.setText("0");
 
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setForeground(new java.awt.Color(1, 1, 1));
         jLabel26.setText("Thread Has been Posted");
 
         jLabel25.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -750,20 +981,6 @@ public class HomeView extends javax.swing.JFrame {
 
         taCommunityDesc.setColumns(20);
         taCommunityDesc.setRows(5);
-
-        lstCommunityMember.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane8.setViewportView(lstCommunityMember);
-
-        lstCommunityThread.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane7.setViewportView(lstCommunityThread);
 
         btnInvite.setText("Invite");
         btnInvite.addActionListener(new java.awt.event.ActionListener() {
@@ -779,6 +996,10 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_group_black_small.png"))); // NOI18N
+
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_description_black_small.png"))); // NOI18N
+
         javax.swing.GroupLayout pnlSubCommunityRLayout = new javax.swing.GroupLayout(pnlSubCommunityR);
         pnlSubCommunityR.setLayout(pnlSubCommunityRLayout);
         pnlSubCommunityRLayout.setHorizontalGroup(
@@ -786,99 +1007,99 @@ public class HomeView extends javax.swing.JFrame {
             .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
                 .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(219, 219, 219)
+                        .addComponent(lblCommunityName))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(239, 239, 239)
+                        .addComponent(jLabel22)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblNameCommunity))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(lblDateCommunity)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblTimeCommunity))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jLabel37)
+                        .addGap(8, 8, 8)
                         .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblMemberCounterC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                                        .addComponent(lblThreadCountC)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel26))
-                                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                                        .addComponent(lblMemberCounterC)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                                                .addGap(25, 25, 25)
-                                                .addComponent(lblCommunityName))
-                                            .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                                                    .addComponent(lblDateCommunity)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                    .addComponent(lblTimeCommunity))
-                                                .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                                                    .addComponent(jLabel22)
-                                                    .addGap(0, 0, 0)
-                                                    .addComponent(lblNameCommunity)
-                                                    .addGap(40, 40, 40)))
-                                            .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                                                .addComponent(jLabel24)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(lblTotalMemberC))))))
-                            .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel27))
-                            .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel25)))
-                        .addGap(0, 180, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubCommunityRLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(taCommunityDesc)
-                            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlSubCommunityRLayout.createSequentialGroup()
-                                .addComponent(btnInvite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnLeave, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTotalMemberC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(77, 77, 77)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblThreadCountC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel26))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(taCommunityDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel27))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(spSubCommunityRMember, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel25))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(spSubCommunityRThread, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnInvite, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(btnLeave, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14))
         );
         pnlSubCommunityRLayout.setVerticalGroup(
             pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(lblCommunityName)
                 .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(lblCommunityName)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubCommunityRLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblNameCommunity)))
-                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(lblNameCommunity))
+                .addGap(6, 6, 6)
+                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDateCommunity)
                     .addComponent(lblTimeCommunity))
-                .addGap(30, 30, 30)
-                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(lblMemberCounterC)
-                    .addComponent(jLabel24)
-                    .addComponent(lblTotalMemberC))
-                .addGap(18, 18, 18)
-                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
-                    .addComponent(lblThreadCountC)
-                    .addComponent(jLabel26))
-                .addGap(25, 25, 25)
-                .addComponent(taCommunityDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel37)
+                            .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMemberCounterC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTotalMemberC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblThreadCountC, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(pnlSubCommunityRLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(17, 17, 17)
+                .addComponent(taCommunityDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel27)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(13, 13, 13)
+                .addComponent(spSubCommunityRMember, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addComponent(jLabel25)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(13, 13, 13)
+                .addComponent(spSubCommunityRThread, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(pnlSubCommunityRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnInvite, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLeave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(btnLeave, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pnlSubRight.add(pnlSubCommunityR, "card3");
@@ -889,12 +1110,12 @@ public class HomeView extends javax.swing.JFrame {
             pnlSubMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSubMainLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(pnlSubLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(517, Short.MAX_VALUE))
+                .addComponent(pnlSubLeft, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 545, Short.MAX_VALUE))
             .addGroup(pnlSubMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubMainLayout.createSequentialGroup()
-                    .addGap(0, 520, Short.MAX_VALUE)
-                    .addComponent(pnlSubRight, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 487, Short.MAX_VALUE)
+                    .addComponent(pnlSubRight, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         pnlSubMainLayout.setVerticalGroup(
             pnlSubMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -905,18 +1126,220 @@ public class HomeView extends javax.swing.JFrame {
 
         pnlMain.add(pnlSubMain, "card4");
 
-        javax.swing.GroupLayout pnlProfileLayout = new javax.swing.GroupLayout(pnlProfile);
-        pnlProfile.setLayout(pnlProfileLayout);
-        pnlProfileLayout.setHorizontalGroup(
-            pnlProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1039, Short.MAX_VALUE)
+        pnlSubProfile.setBackground(new java.awt.Color(196, 255, 249));
+
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_account_black_semiMedium.png"))); // NOI18N
+
+        lblNameProfile.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblNameProfile.setText("Name");
+
+        lblEmailProfile.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblEmailProfile.setText("Email");
+
+        lblNicknameProfile.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblNicknameProfile.setText("Nickname");
+
+        lblNameProfile1.setFont(new java.awt.Font("Dialog", 1, 33)); // NOI18N
+        lblNameProfile1.setText("\"User Title\"");
+
+        lblNameProfile2.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblNameProfile2.setText("Gender");
+
+        lblCountryNameProfile.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblCountryNameProfile.setText("Country_Name");
+
+        lblNameProfile3.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblNameProfile3.setText("Country");
+
+        lblGenderProfile.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblGenderProfile.setText("Gender");
+
+        lblNameProfile4.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblNameProfile4.setText("Member Since");
+
+        lblYearProfile.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblYearProfile.setText("1 January 2000");
+
+        lblNameProfile5.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblNameProfile5.setText("Telephone");
+
+        lblTelephoneProfile.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblTelephoneProfile.setText("Telephone_Number");
+
+        lblNameProfile6.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblNameProfile6.setText("Total Post");
+
+        lblPostCountProfile.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblPostCountProfile.setText("Post_Count");
+
+        lblNameProfile7.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblNameProfile7.setText("Community");
+
+        lblCommunityProfile.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblCommunityProfile.setText("Community_Name");
+
+        lblNameProfile8.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblNameProfile8.setText("Top 3 Community Position");
+
+        lblPosition3Profile.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblPosition3Profile.setText("Test 3");
+
+        lblPosition1Profile.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblPosition1Profile.setText("Test 1");
+
+        lblPosition2Profile.setFont(new java.awt.Font("Dialog", 1, 23)); // NOI18N
+        lblPosition2Profile.setText("Test 2");
+
+        javax.swing.GroupLayout pnlSubProfileLayout = new javax.swing.GroupLayout(pnlSubProfile);
+        pnlSubProfile.setLayout(pnlSubProfileLayout);
+        pnlSubProfileLayout.setHorizontalGroup(
+            pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubProfileLayout.createSequentialGroup()
+                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblYearProfile))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlSubProfileLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(lblPosition1Profile)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblPosition2Profile)
+                                .addGap(373, 373, 373)
+                                .addComponent(lblPosition3Profile))
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblCountryNameProfile)
+                                    .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblNameProfile3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblTelephoneProfile)
+                                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlSubProfileLayout.createSequentialGroup()
+                                        .addComponent(lblNameProfile5)
+                                        .addGap(27, 27, 27)))
+                                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblGenderProfile))
+                                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
+                                        .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jSeparator2)
+                                            .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                                                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(lblPostCountProfile)
+                                                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlSubProfileLayout.createSequentialGroup()
+                                                            .addComponent(lblNameProfile6)
+                                                            .addGap(27, 27, 27)))
+                                                    .addComponent(lblNameProfile2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                                        .addGap(250, 250, 250)
+                                        .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNameProfile4)
+                                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubProfileLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblCommunityProfile)
+                                            .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlSubProfileLayout.createSequentialGroup()
+                                                .addComponent(lblNameProfile7)
+                                                .addGap(27, 27, 27))))))
+                            .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                                .addComponent(lblNameProfile8)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(37, 37, 37))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubProfileLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblEmailProfile)
+                .addGap(525, 525, 525))
+            .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                        .addGap(451, 451, 451)
+                        .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNicknameProfile)
+                            .addComponent(lblNameProfile)))
+                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                        .addGap(383, 383, 383)
+                        .addComponent(lblNameProfile1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                        .addGap(431, 431, 431)
+                        .addComponent(jLabel35)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pnlProfileLayout.setVerticalGroup(
-            pnlProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 749, Short.MAX_VALUE)
+        pnlSubProfileLayout.setVerticalGroup(
+            pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                        .addComponent(lblNameProfile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblEmailProfile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNicknameProfile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNameProfile1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlSubProfileLayout.createSequentialGroup()
+                                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblNameProfile3)
+                                    .addComponent(lblNameProfile2)
+                                    .addComponent(lblNameProfile4))
+                                .addGap(0, 0, 0)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblGenderProfile)
+                    .addComponent(lblCountryNameProfile)
+                    .addComponent(lblYearProfile))
+                .addGap(92, 92, 92)
+                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                        .addComponent(lblNameProfile5)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTelephoneProfile))
+                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                        .addComponent(lblNameProfile6)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPostCountProfile))
+                    .addGroup(pnlSubProfileLayout.createSequentialGroup()
+                        .addComponent(lblNameProfile7)
+                        .addGap(0, 0, 0)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblCommunityProfile)))
+                .addGap(50, 50, 50)
+                .addComponent(lblNameProfile8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlSubProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPosition3Profile)
+                    .addComponent(lblPosition2Profile)
+                    .addComponent(lblPosition1Profile))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
-        pnlMain.add(pnlProfile, "card3");
+        pnlMain.add(pnlSubProfile, "card3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -924,8 +1347,8 @@ public class HomeView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(pnlMainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -952,12 +1375,26 @@ public class HomeView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLeaveActionPerformed
 
+    private void btnInvite1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvite1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInvite1ActionPerformed
+
+    private void btnLeave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeave1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLeave1ActionPerformed
+
+    private void tfSubHomeRCommentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSubHomeRCommentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfSubHomeRCommentActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateCM;
     private javax.swing.JButton btnCreateT;
     private javax.swing.JButton btnInvite;
+    private javax.swing.JButton btnInvite1;
     private javax.swing.JButton btnLeave;
+    private javax.swing.JButton btnLeave1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -973,35 +1410,48 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JLabel lblCommunity;
     private javax.swing.JLabel lblCommunityName;
     private javax.swing.JLabel lblCommunityNameHome;
+    private javax.swing.JLabel lblCommunityProfile;
+    private javax.swing.JLabel lblCountMT;
+    private javax.swing.JLabel lblCountryNameProfile;
     private javax.swing.JLabel lblDateCommunity;
+    private javax.swing.JLabel lblDateMT;
     private javax.swing.JLabel lblDays;
+    private javax.swing.JLabel lblEmailProfile;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JLabel lblFotoHome;
+    private javax.swing.JLabel lblGenderProfile;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblLogOut;
     private javax.swing.JLabel lblMemberCounterC;
@@ -1009,23 +1459,40 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblNameCommunity;
     private javax.swing.JLabel lblNameHome;
+    private javax.swing.JLabel lblNameMyThread1;
+    private javax.swing.JLabel lblNameProfile;
+    private javax.swing.JLabel lblNameProfile1;
+    private javax.swing.JLabel lblNameProfile2;
+    private javax.swing.JLabel lblNameProfile3;
+    private javax.swing.JLabel lblNameProfile4;
+    private javax.swing.JLabel lblNameProfile5;
+    private javax.swing.JLabel lblNameProfile6;
+    private javax.swing.JLabel lblNameProfile7;
+    private javax.swing.JLabel lblNameProfile8;
+    private javax.swing.JLabel lblNicknameProfile;
     private javax.swing.JLabel lblPeople;
     private javax.swing.JLabel lblPercent;
+    private javax.swing.JLabel lblPercentageMT;
+    private javax.swing.JLabel lblPosition1Profile;
+    private javax.swing.JLabel lblPosition2Profile;
+    private javax.swing.JLabel lblPosition3Profile;
     private javax.swing.JLabel lblPostCount;
+    private javax.swing.JLabel lblPostCountProfile;
     private javax.swing.JLabel lblStatus;
+    private javax.swing.JLabel lblSubHomeRLike;
+    private javax.swing.JLabel lblSubHomeRSend;
     private javax.swing.JLabel lblSum;
+    private javax.swing.JLabel lblTelephoneProfile;
     private javax.swing.JLabel lblThreadCountC;
     private javax.swing.JLabel lblTime;
     private javax.swing.JLabel lblTimeCommunity;
+    private javax.swing.JLabel lblTimeMT;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblTitleArticle;
+    private javax.swing.JLabel lblTitleThreadMT;
+    private javax.swing.JLabel lblTotalMT;
     private javax.swing.JLabel lblTotalMemberC;
-    private javax.swing.JList<String> lstComment;
-    private javax.swing.JList<String> lstCommunity;
-    private javax.swing.JList<String> lstCommunityMember;
-    private javax.swing.JList<String> lstCommunityThread;
-    private javax.swing.JList<String> lstHome;
-    private javax.swing.JList<String> lstThread;
+    private javax.swing.JLabel lblYearProfile;
     private javax.swing.JPanel pnlLogOut;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlMainMenu;
@@ -1042,95 +1509,139 @@ public class HomeView extends javax.swing.JFrame {
     private javax.swing.JPanel pnlSubMain;
     private javax.swing.JPanel pnlSubMyThreadL;
     private javax.swing.JPanel pnlSubMyThreadR;
+    private javax.swing.JPanel pnlSubProfile;
     private javax.swing.JPanel pnlSubRight;
+    private javax.swing.JScrollPane spSubCommunityL;
+    private javax.swing.JScrollPane spSubCommunityRMember;
+    private javax.swing.JScrollPane spSubCommunityRThread;
+    private javax.swing.JScrollPane spSubHomeL;
+    private javax.swing.JScrollPane spSubHomeRBody;
+    private javax.swing.JScrollPane spSubHomeRComment;
+    private javax.swing.JScrollPane spSubMyThreadL;
+    private javax.swing.JScrollPane spSubMyThreadRBody;
+    private javax.swing.JScrollPane spSubMyThreadRComment;
     private javax.swing.JTextArea taArticle;
     private javax.swing.JTextArea taCommunityDesc;
+    private javax.swing.JTextArea taSubMyThreadRBody;
     private javax.swing.JTextField tfSearch;
     private javax.swing.JTextField tfSearchCM;
     private javax.swing.JTextField tfSearchT;
+    private javax.swing.JTextField tfSubHomeRComment;
     // End of variables declaration//GEN-END:variables
 
-    public void addPnlMnHomeAdapter(MouseAdapter act){
+    public void addPnlMnHomeAdapter(MouseAdapter act) {
         pnlMnHome.addMouseListener(act);
     }
-    
-    public void addPnlMnMyThreadAdapter(MouseAdapter act){
+
+    public void addPnlMnMyThreadAdapter(MouseAdapter act) {
         pnlMnMyThread.addMouseListener(act);
     }
-    
-    public void addPnlMnCommunityAdapter(MouseAdapter act){
+
+    public void addPnlMnCommunityAdapter(MouseAdapter act) {
         pnlMnCommunity.addMouseListener(act);
     }
-    
-    public void addPnlLogOutAdapter(MouseAdapter act){
+
+    public void addPnlLogOutAdapter(MouseAdapter act) {
         pnlLogOut.addMouseListener(act);
     }
 
-    public void changeMenu(MenuType menu){
-        switch(menu){
+    public void addPnlProfileAdapter(MouseAdapter act) {
+        pnlProfile.addMouseListener(act);
+    }
+
+    public void changeMenu(MenuType menu) {
+        switch (menu) {
             case MENU_HOME:
                 pnlSubHomeL.setVisible(true);
                 pnlSubHomeR.setVisible(true);
-                
+
                 pnlSubCommunityL.setVisible(false);
                 pnlSubCommunityR.setVisible(false);
-                
+
                 pnlSubMyThreadL.setVisible(false);
                 pnlSubMyThreadR.setVisible(false);
-                
-                pnlProfile.setVisible(false);
+
+                pnlSubProfile.setVisible(false);
                 pnlSubMain.setVisible(true);
                 break;
             case MENU_COMMUNITY:
                 pnlSubHomeL.setVisible(false);
                 pnlSubHomeR.setVisible(false);
-                
+
                 pnlSubCommunityL.setVisible(true);
                 pnlSubCommunityR.setVisible(true);
-                
+
                 pnlSubMyThreadL.setVisible(false);
                 pnlSubMyThreadR.setVisible(false);
-                
-                pnlProfile.setVisible(false);
+
+                pnlSubProfile.setVisible(false);
                 pnlSubMain.setVisible(true);
                 break;
             case MENU_MY_THREAD:
                 pnlSubHomeL.setVisible(false);
                 pnlSubHomeR.setVisible(false);
-                
+
                 pnlSubCommunityL.setVisible(false);
                 pnlSubCommunityR.setVisible(false);
-                
+
                 pnlSubMyThreadL.setVisible(true);
                 pnlSubMyThreadR.setVisible(true);
-                
-                pnlProfile.setVisible(false);
+
+                pnlSubProfile.setVisible(false);
                 pnlSubMain.setVisible(true);
                 break;
             case MENU_PROFILE:
                 pnlSubHomeL.setVisible(false);
                 pnlSubHomeR.setVisible(false);
-                
+
                 pnlSubCommunityL.setVisible(false);
                 pnlSubCommunityR.setVisible(false);
-                
+
                 pnlSubMyThreadL.setVisible(false);
                 pnlSubMyThreadR.setVisible(false);
-                
-                pnlProfile.setVisible(true);
+
+                pnlSubProfile.setVisible(true);
                 pnlSubMain.setVisible(false);
                 break;
             default:
                 break;
         }
     }
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         lblName.setText(name);
+    }
+
+    public void setLstSubHomeL(DefaultListModel<HotThreadModel> dlm) {
+        lstSubHomeL.setModel(dlm);
+    }
+
+    public void setLstSubMyThreadL(DefaultListModel<MyThreadModel> dlm) {
+        lstSubMyThreadL.setModel(dlm);
+    }
+
+    public void setLstSubCommunityL(DefaultListModel<CommunityModel> dlm) {
+        lstSubCommunityL.setModel(dlm);
+    }
+
+    public void setLstSubHomeR(DefaultListModel<CommentModel> dlm) {
+        this.lstSubHomeR.setModel(dlm);
+    }
+
+    public void setLstSubMyThreadR(DefaultListModel<CommentModel> dlm) {
+        this.lstSubMyThreadR.setModel(dlm);
+    }
+
+    public void setLstSubCommunityRThread(DefaultListModel<CommunityThreadModel> dlm) {
+        this.lstSubCommunityRThread.setModel(dlm);
+    }
+
+    public void setLstSubCommunityRMember(DefaultListModel<MemberModel> dlm) {
+        this.lstSubCommunityRMember.setModel(dlm);
     }
 }
 
-enum MenuType{
+enum MenuType {
     MENU_HOME,
     MENU_COMMUNITY,
     MENU_MY_THREAD,

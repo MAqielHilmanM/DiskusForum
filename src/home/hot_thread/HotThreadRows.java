@@ -20,6 +20,7 @@ public class HotThreadRows extends javax.swing.JPanel implements ListCellRendere
      */
     public HotThreadRows() {
         initComponents();
+        
     }
 
     /**
@@ -36,11 +37,13 @@ public class HotThreadRows extends javax.swing.JPanel implements ListCellRendere
         jLabel3 = new javax.swing.JLabel();
         lblHotThreadRowCommunity = new javax.swing.JLabel();
         lblHotThreadRowTitle = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        spHitThreadRowBody = new javax.swing.JScrollPane();
         taHotThreadRowBody = new javax.swing.JTextArea();
         lblHotThreadDate = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setName(""); // NOI18N
+        setOpaque(false);
 
         lblHotThreadRowImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_account_black_superSmall.png"))); // NOI18N
 
@@ -64,7 +67,7 @@ public class HotThreadRows extends javax.swing.JPanel implements ListCellRendere
         taHotThreadRowBody.setAutoscrolls(false);
         taHotThreadRowBody.setBorder(null);
         taHotThreadRowBody.setOpaque(false);
-        jScrollPane1.setViewportView(taHotThreadRowBody);
+        spHitThreadRowBody.setViewportView(taHotThreadRowBody);
 
         lblHotThreadDate.setText("Thursday, 11 August 2018");
 
@@ -74,22 +77,25 @@ public class HotThreadRows extends javax.swing.JPanel implements ListCellRendere
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblHotThreadRowImage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblHotThreadRowTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblHotThreadRowName)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblHotThreadRowCommunity))
-                    .addComponent(jScrollPane1))
-                .addContainerGap(58, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblHotThreadDate)
-                .addGap(35, 35, 35))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblHotThreadDate)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblHotThreadRowImage)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblHotThreadRowTitle)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblHotThreadRowName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblHotThreadRowCommunity))
+                                    .addComponent(spHitThreadRowBody, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,38 +109,38 @@ public class HotThreadRows extends javax.swing.JPanel implements ListCellRendere
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblHotThreadRowTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(spHitThreadRowBody, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblHotThreadDate)
-                .addGap(13, 13, 13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-//    @Override
-//    public Component getListCellRendererComponent(JList<? extends HotThreadModel> list, HotThreadModel value, int index, boolean isSelected, boolean cellHasFocus) {
-//        lblHotThreadRowTitle.setText(value.getTitle());
-//        lblHotThreadRowName.setText(value.getName());
-//        lblHotThreadRowCommunity.setText(value.getCommunity_name());
-//        taHotThreadRowBody.setText(value.getPreview());
-//        lblHotThreadDate.setText(value.getDate());
-//        
-//        return this;
-//    }
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblHotThreadDate;
     private javax.swing.JLabel lblHotThreadRowCommunity;
     private javax.swing.JLabel lblHotThreadRowImage;
     private javax.swing.JLabel lblHotThreadRowName;
     private javax.swing.JLabel lblHotThreadRowTitle;
+    private javax.swing.JScrollPane spHitThreadRowBody;
     private javax.swing.JTextArea taHotThreadRowBody;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        HotThreadModel model = (HotThreadModel) value;
+        
+        lblHotThreadRowName.setText(model.getName());
+        lblHotThreadDate.setText(model.getDate());
+        lblHotThreadRowTitle.setText(model.getTitle());
+        lblHotThreadRowCommunity.setText(model.getCommunity_name());
+        taHotThreadRowBody.setText(model.getPreview());
+        spHitThreadRowBody.setBorder(null);
+        
         return this;
     }
 }

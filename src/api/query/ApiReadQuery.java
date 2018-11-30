@@ -20,8 +20,12 @@ import api.tools.Tools;
  *
  * @author maqielhm
  */
+enum Order {
+    ASCENDING,
+    DESCENDING
+}
 
-public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> implements ApiOperatorInterface<ApiReadQuery.Condition>{
+public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> implements ApiOperatorInterface<ApiReadQuery.Condition> {
 
     private List<String> mColumns;
     private String mTable = "";
@@ -29,6 +33,8 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
     private boolean mShowAll = false;
     private T mTableObject;
     private String mQuery = "";
+    private Order orderBy;
+    private String orderByColumn;
 
     public ApiReadQuery() {
         mColumns = new ArrayList<>();
@@ -41,7 +47,7 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
         mTable = table.getTableName();
     }
 
-    public ApiReadQuery addTable(T table) throws Exception  {
+    public ApiReadQuery addTable(T table) throws Exception {
         if (mTable.isEmpty()) {
             mTable = table.getTableName();
             mTableObject = table;
@@ -49,19 +55,6 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
         }
         throw new Exception("Add relation if add multitable");
     }
-
-//    
-//    public ApiReadQuery addTable(String tableName, Relation relation, String condition) {
-//        mTables.add(tableName);
-//        mRelations.add(new Relational(relation, condition));
-//        return this;
-//    }
-
-//    
-//    public ApiReadQuery addGroupBy(String columnName) {
-//        mGroups.add(columnName);
-//        return this;
-//    }
 
     public ApiReadQuery showAllColumn() {
         mShowAll = true;
@@ -75,6 +68,18 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
         }
         mColumns.add(column);
         mShowAll = false;
+        return this;
+    }
+
+    public ApiReadQuery orderByAscending(String column) {
+        orderBy = Order.ASCENDING;
+        orderByColumn = column;
+        return this;
+    }
+
+    public ApiReadQuery orderByDescending(String column) {
+        orderBy = Order.DESCENDING;
+        orderByColumn = column;
         return this;
     }
 
@@ -95,13 +100,21 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
             }
 
             mQuery = mQuery.concat("FROM ");
-            
+
             mQuery = mQuery.concat(mTable);
 
-            if(!mWhere.isEmpty()){
-                mQuery = mQuery.concat(" WHERE "+mWhere);
+            if (!mWhere.isEmpty()) {
+                mQuery = mQuery.concat(" WHERE " + mWhere);
             }
 
+            if (orderBy != null && orderByColumn != null) {
+                mQuery = mQuery.concat(" ORDER BY "+orderByColumn+" ");
+                if (orderBy == Order.ASCENDING) {
+                    mQuery = mQuery.concat("ASC");
+                } else {
+                    mQuery = mQuery.concat("DESC");
+                }
+            }
         }
 
         System.out.println("READ QUERY : " + mQuery);
@@ -111,7 +124,9 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
     public List<T> execute() {
         List<T> lists = new ArrayList<T>();
         try {
-            if(!ApiConnection.hasSet()) throw new Exception("Connection Not Set");
+            if (!ApiConnection.hasSet()) {
+                throw new Exception("Connection Not Set");
+            }
             ApiConnection.createConnection();
             Statement state = ApiConnection.getConnection().createStatement();
             prepareQuery();
@@ -120,6 +135,7 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
             if (mTableObject == null) {
                 throw new Exception("Table Class Not Found");
             }
+            
             lists = mTableObject.toObjects(rs);
             ApiConnection.closeConnection();
         } catch (Exception e) {
@@ -135,65 +151,65 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
 
     @Override
     public Condition conditionEqual(Object a, Object b) {
-        mWhere = mWhere.concat(a+" = "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a + " = " + Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionNotEqual(Object a, Object b) {
-        mWhere = mWhere.concat(a+" <> "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a + " <> " + Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionGraterThanOrEqual(Object a, Object b) {
-        mWhere = mWhere.concat(a+" >= "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a + " >= " + Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionLessThanOrEqual(Object a, Object b) {
-        mWhere = mWhere.concat(a+" <= "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a + " <= " + Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionLessThan(Object a, Object b) {
-        mWhere = mWhere.concat(a+" < "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a + " < " + Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionGraterThan(Object a, Object b) {
-        mWhere = mWhere.concat(a+" > "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(a + " > " + Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionBetween(String column, Object a, Object b) {
-        mWhere = mWhere.concat(column+" Between "+a+" AND "+b);
+        mWhere = mWhere.concat(column + " Between " + a + " AND " + b);
         return new Condition();
     }
 
     @Override
     public Condition conditionLike(String column, String b) {
-        mWhere = mWhere.concat(column+" Like "+Tools.convertToQueryValue(b));
+        mWhere = mWhere.concat(column + " Like " + Tools.convertToQueryValue(b));
         return new Condition();
     }
 
     @Override
     public Condition conditionIn(String column, Object[] b) {
-        mWhere = mWhere.concat(column+" IN(");
+        mWhere = mWhere.concat(column + " IN(");
         for (Object object : b) {
-            object = object instanceof String?"'"+object+"'":object;
-            mWhere = mWhere.concat(object+",");
+            object = object instanceof String ? "'" + object + "'" : object;
+            mWhere = mWhere.concat(object + ",");
         }
-        
+
         if (mWhere.charAt(mWhere.length() - 1) == ',') {
-                mWhere = mWhere.substring(0, mWhere.length() - 1);
+            mWhere = mWhere.substring(0, mWhere.length() - 1);
         }
         mWhere = mWhere.concat(")");
-        
+
         return new Condition();
     }
 
@@ -201,7 +217,7 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
 
         public ApiReadQuery AND() {
             mWhere = mWhere.concat(" AND ");
-        
+
             return ApiReadQuery.this;
         }
 
@@ -214,8 +230,8 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
             mWhere = mWhere.concat(" NOT ");
             return ApiReadQuery.this;
         }
-        
-        public List<T> execute(){
+
+        public List<T> execute() {
             return ApiReadQuery.this.execute();
         }
     }
