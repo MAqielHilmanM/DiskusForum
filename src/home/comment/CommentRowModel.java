@@ -9,14 +9,14 @@ package home.comment;
  *
  * @author maqielhm
  */
-public class CommentModel {
+public class CommentRowModel {
     private String id;
     private String url;
     private String date;
     private String body;
     private String name;
 
-    public CommentModel(String id, String url, String date, String body,String name) {
+    public CommentRowModel(String id, String url, String date, String body,String name) {
         this.id = id;
         this.url = url;
         this.date = date;

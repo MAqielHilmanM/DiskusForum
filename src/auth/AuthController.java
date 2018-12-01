@@ -9,6 +9,7 @@ import base.BaseController;
 import home.HomeController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import utils.Constant;
 import utils.Helper;
 
 /**
@@ -26,14 +27,14 @@ public class AuthController implements BaseController {
         view = new AuthView();
         model = new AuthModel();
         view.setVisible(true);
-        
+        Constant.USER_ID = "";
         initComponent();
     }
 
     public void onClickLogin() {
         if (isLoginValid()) {
             request = model.new Request(view.getLoginUsername(), view.getLoginPassword());
-            response = model.findBy(request);
+            response = model.findSingleBy(request);
             if (response == null) {
                 System.out.println("DATA NOT FOUND");
                 view.showMessage("Oops. . . Please Check Your Ceredentials.", "Login Failed", 0);

@@ -38,14 +38,14 @@ public class ApiConnection {
     }
 
     public static void closeConnection() {
-        try {            
+        try {
             api.close();
         } catch (SQLException e) {
-            System.out.println("Gagal Memutuskan koneksi : "+e.toString());
+            System.out.println("Gagal Memutuskan koneksi : " + e.toString());
         }
     }
-    
-    public static boolean isConnected(){
+
+    public static boolean isConnected() {
         try {
             return api != null || !api.isClosed();
         } catch (SQLException ex) {
@@ -53,10 +53,13 @@ public class ApiConnection {
         }
         return false;
     }
-    
-    public static boolean hasSet(){
-        if(host != null && port != 0 && db != null && user != null && pass != null) return true;
-        else return false;
+
+    public static boolean hasSet() {
+        if (host != null && port != 0 && db != null && user != null && pass != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static void createConnection() {
@@ -70,7 +73,15 @@ public class ApiConnection {
             /* Get the Connection object. */
             api = DriverManager.getConnection(url, user, pass);
 
-            /* Get related meta data for this mysql server to verify db connect successfully.. */
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void getApiInformation() {
+        /* Get related meta data for this mysql server to verify db connect successfully.. */
+        try {
+
             DatabaseMetaData dbmd = api.getMetaData();
 
             String dbName = dbmd.getDatabaseProductName();
@@ -93,9 +104,8 @@ public class ApiConnection {
 
             System.out.println("Database Driver Name is " + driverName);
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("ERROR LOAD INFORMATION : " + e);
         }
     }
-
 }

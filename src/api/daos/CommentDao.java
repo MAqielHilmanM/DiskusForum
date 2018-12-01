@@ -20,6 +20,7 @@ public class CommentDao extends BaseDao<CommentDao> {
     public static final String COLUMN_ID_COMMENT = "id_comment";
     public static final String COLUMN_ID_MEMBER = "id_member";
     public static final String COLUMN_ID_THREAD = "id_thread";
+    public static final String COLUMN_ID_REPLY = "id_reply";
     public static final String COLUMN_COMMENT = "comment";
     public static final String COLUMN_LIKE = "like";
     public static final String COLUMN_CREATED_DATE = "created_date";
@@ -27,6 +28,7 @@ public class CommentDao extends BaseDao<CommentDao> {
         COLUMN_ID_COMMENT,
         COLUMN_ID_MEMBER,
         COLUMN_ID_THREAD,
+        COLUMN_ID_REPLY,
         COLUMN_COMMENT,
         COLUMN_LIKE,
         COLUMN_CREATED_DATE
@@ -35,6 +37,7 @@ public class CommentDao extends BaseDao<CommentDao> {
     private String id_comment;
     private String id_member;
     private String id_thread;
+    private String id_reply;
     private String comment;
     private int like;
     private Date created_date;
@@ -45,12 +48,15 @@ public class CommentDao extends BaseDao<CommentDao> {
 
     @Override
     public List<CommentDao> toObjects(ResultSet rs) {
+        super.setmResultSet(rs);
+
         List<CommentDao> lists = new ArrayList<>();
         try {
             while (rs.next()) {
                 id_comment = rs.getString(COLUMN_COMMENT);
                 id_member = rs.getString(COLUMN_ID_COMMENT);
                 id_thread = rs.getString(COLUMN_ID_THREAD);
+                id_reply = rs.getString(COLUMN_ID_REPLY);
                 comment = rs.getString(COLUMN_COMMENT);
                 like = rs.getInt(COLUMN_LIKE);
                 created_date = rs.getDate(COLUMN_CREATED_DATE);
@@ -61,5 +67,34 @@ public class CommentDao extends BaseDao<CommentDao> {
         }
         return lists;
     }
+
+    public String getId_comment() {
+        return id_comment;
+    }
+
+    public String getId_member() {
+        return id_member;
+    }
+
+    public String getId_thread() {
+        return id_thread;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public Date getCreated_date() {
+        return created_date;
+    }
+
+    public String getId_reply() {
+        return id_reply;
+    }
+    
 
 }

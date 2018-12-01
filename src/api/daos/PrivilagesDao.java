@@ -19,9 +19,11 @@ import java.util.List;
  *
  * @author maqielhm
  */
-public class PrivilagesDao extends BaseDao<PrivilagesDao>{
-    public static final String TABLE_NAME = "t_privilages";
-    public static final String COLUMN_ID = "id_privilages";
+public class PrivilagesDao extends BaseDao<PrivilagesDao> {
+
+    public static final String TABLE_NAME = "t_privileges";
+    public static final String COLUMN_ID = "id_privileges";
+    public static final String COLUMN_NAME = "privileges_name";
     public static final String COLUMN_CAN_ADD_THREAD = "canAddThread";
     public static final String COLUMN_CAN_DELETE_THREAD = "canDeleteThread";
     public static final String COLUMN_CAN_EDIT_THREAD = "canEditThread";
@@ -37,6 +39,7 @@ public class PrivilagesDao extends BaseDao<PrivilagesDao>{
     public static final String COLUMN_CAN_REMOVE_COMMUNITY = "canRemoveCommunity";
     public static final String[] COLUMNS = {
         COLUMN_ID,
+        COLUMN_NAME,
         COLUMN_CAN_ADD_THREAD,
         COLUMN_CAN_DELETE_THREAD,
         COLUMN_CAN_EDIT_THREAD,
@@ -53,6 +56,7 @@ public class PrivilagesDao extends BaseDao<PrivilagesDao>{
     };
 
     private String id;
+    private String name;
     private boolean canAddThread;
     private boolean canDeleteThread;
     private boolean canEditThread;
@@ -73,23 +77,25 @@ public class PrivilagesDao extends BaseDao<PrivilagesDao>{
 
     @Override
     public List<PrivilagesDao> toObjects(ResultSet rs) {
+        super.setmResultSet(rs);
         List<PrivilagesDao> lists = new ArrayList<>();
         try {
             while (rs.next()) {
                 id = rs.getString(COLUMN_ID);
-                canAddThread        = rs.getBoolean(COLUMN_CAN_ADD_THREAD);
-                canDeleteThread     = rs.getBoolean(COLUMN_CAN_DELETE_THREAD);
-                canEditThread       = rs.getBoolean(COLUMN_CAN_EDIT_THREAD);
-                canAddMember        = rs.getBoolean(COLUMN_CAN_ADD_MEMBER);
-                canDeleteMember     = rs.getBoolean(COLUMN_CAN_DELETE_MEMBER);
-                canAddComment       = rs.getBoolean(COLUMN_CAN_ADD_COMMENT);
-                canRemoveComment    = rs.getBoolean(COLUMN_CAN_REMOVE_COMMENT);
-                canEditComment      = rs.getBoolean(COLUMN_CAN_EDIT_COMMENT);
-                canRemoveUser       = rs.getBoolean(COLUMN_CAN_REMOVE_USER);
-                canEditUser         = rs.getBoolean(COLUMN_CAN_EDIT_USER);
-                canAddCommunity     = rs.getBoolean(COLUMN_CAN_ADD_COMMUNITY);
-                canEditCommunity    = rs.getBoolean(COLUMN_CAN_EDIT_COMMUNITY);
-                canRemoveCommunity  = rs.getBoolean(COLUMN_CAN_REMOVE_COMMUNITY);
+                name = rs.getString(COLUMN_NAME);
+                canAddThread = rs.getBoolean(COLUMN_CAN_ADD_THREAD);
+                canDeleteThread = rs.getBoolean(COLUMN_CAN_DELETE_THREAD);
+                canEditThread = rs.getBoolean(COLUMN_CAN_EDIT_THREAD);
+                canAddMember = rs.getBoolean(COLUMN_CAN_ADD_MEMBER);
+                canDeleteMember = rs.getBoolean(COLUMN_CAN_DELETE_MEMBER);
+                canAddComment = rs.getBoolean(COLUMN_CAN_ADD_COMMENT);
+                canRemoveComment = rs.getBoolean(COLUMN_CAN_REMOVE_COMMENT);
+                canEditComment = rs.getBoolean(COLUMN_CAN_EDIT_COMMENT);
+                canRemoveUser = rs.getBoolean(COLUMN_CAN_REMOVE_USER);
+                canEditUser = rs.getBoolean(COLUMN_CAN_EDIT_USER);
+                canAddCommunity = rs.getBoolean(COLUMN_CAN_ADD_COMMUNITY);
+                canEditCommunity = rs.getBoolean(COLUMN_CAN_EDIT_COMMUNITY);
+                canRemoveCommunity = rs.getBoolean(COLUMN_CAN_REMOVE_COMMUNITY);
                 lists.add(this);
             }
         } catch (SQLException e) {

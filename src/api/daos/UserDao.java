@@ -29,8 +29,10 @@ public class UserDao extends BaseDao<UserDao> {
     public static final String COLUMN_BIOGRAPH = "biograph";
     public static final String COLUMN_ADDRESS = "address";
     public static final String COLUMN_COUNTRY = "country";
-    public static final String COLUMN_URL_COVER = "URL_Cover";
-    public static final String COLUMN_URL_PHOTO = "URL_Photo";
+    public static final String COLUMN_TITLE = "title";
+    public static final String COLUMN_URL_PHOTO = "url_photo";
+    public static final String COLUMN_TOTAL_POST = "total_post";
+    public static final String COLUMN_TOTAL_COMMUNITY = "total_community";
     public static final String COLUMN_CREATED_DATE = "created_date";
 
     public static final String[] COLUMNS = {
@@ -41,20 +43,24 @@ public class UserDao extends BaseDao<UserDao> {
         COLUMN_BIOGRAPH,
         COLUMN_ADDRESS,
         COLUMN_COUNTRY,
-        COLUMN_URL_COVER,
+        COLUMN_TITLE,
         COLUMN_URL_PHOTO,
+        COLUMN_TOTAL_POST,
+        COLUMN_TOTAL_COMMUNITY,
         COLUMN_CREATED_DATE
     };
 
     private String id;
     private String name;
     private char gender;
-    private long phone;
+    private String phone;
     private String biograph;
     private String address;
     private String country;
-    private String url_cover;
+    private String title;
     private String url_photo;
+    private int total_post;
+    private int total_community;
     private Date created_date;
 
     public UserDao() {
@@ -73,7 +79,7 @@ public class UserDao extends BaseDao<UserDao> {
         return gender;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
@@ -89,12 +95,20 @@ public class UserDao extends BaseDao<UserDao> {
         return country;
     }
 
-    public String getUrl_cover() {
-        return url_cover;
+    public String getTitle() {
+        return title;
     }
 
     public String getUrl_photo() {
         return url_photo;
+    }
+
+    public int getTotal_post() {
+        return total_post;
+    }
+
+    public int getTotal_community() {
+        return total_community;
     }
 
     public Date getCreated_date() {
@@ -103,18 +117,21 @@ public class UserDao extends BaseDao<UserDao> {
 
     @Override
     public List<UserDao> toObjects(ResultSet rs) {
+        super.setmResultSet(rs);
         List<UserDao> users = new ArrayList<>();
         try {
             while (rs.next()) {
                 this.id = rs.getString(COLUMN_ID);
                 this.name = rs.getString(COLUMN_NAME);
                 this.gender = rs.getString(COLUMN_GENDER).charAt(0);
-                this.phone = rs.getLong(COLUMN_PHONE);
+                this.phone = rs.getString(COLUMN_PHONE);
                 this.biograph = rs.getString(COLUMN_BIOGRAPH);
                 this.address = rs.getString(COLUMN_ADDRESS);
                 this.country = rs.getString(COLUMN_COUNTRY);
-                this.url_cover = rs.getString(COLUMN_URL_COVER);
+                this.title = rs.getString(COLUMN_TITLE);
                 this.url_photo = rs.getString(COLUMN_URL_PHOTO);
+                this.total_post = rs.getInt(COLUMN_TOTAL_POST);
+                this.total_community = rs.getInt(COLUMN_TOTAL_COMMUNITY);
                 this.created_date = rs.getDate(COLUMN_CREATED_DATE);
                 users.add(this);
             }

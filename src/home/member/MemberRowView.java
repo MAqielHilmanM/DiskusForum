@@ -14,13 +14,15 @@ import javax.swing.ListCellRenderer;
  *
  * @author maqielhm
  */
-public class MemberRows extends javax.swing.JPanel implements ListCellRenderer {
+public class MemberRowView extends javax.swing.JPanel implements ListCellRenderer {
 
     /**
      * Creates new form CommunityRows
      */
-    public MemberRows() {
+    public MemberRowView() {
         initComponents();
+        setOpaque(true);
+        
     }
 
     /**
@@ -42,6 +44,9 @@ public class MemberRows extends javax.swing.JPanel implements ListCellRenderer {
         lblMemberRowNumPost = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         lblMemberRowStatus = new javax.swing.JLabel();
+
+        setBorder(null);
+        setOpaque(false);
 
         lblMemberRowPicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/src/images/ic_account_circle.png"))); // NOI18N
         lblMemberRowPicture.setText("jLabel16");
@@ -135,13 +140,21 @@ public class MemberRows extends javax.swing.JPanel implements ListCellRenderer {
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        MemberModel model = (MemberModel) value;
+        MemberRowModel model = (MemberRowModel) value;
         lblMemberRowComm.setText(model.getCommunityName());
         lblMemberRowName.setText(model.getName());
         lblMemberRowNumPost.setText(model.getNumberPost());
         lblMemberRowPosition.setText(model.getCommunityPosition());
         lblMemberRowStatus.setText(model.getStatus());
         lblMemberRowTitle.setText(model.getTitle());
+        
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
         return this;
     }
 }

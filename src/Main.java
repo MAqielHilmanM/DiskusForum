@@ -2,6 +2,9 @@
 import api.ApiConnection;
 import api.daos.AuthDao;
 import api.daos.BaseDao;
+import api.daos.CommunityDao;
+import api.daos.MemberDao;
+import api.daos.ThreadDao;
 import api.query.ApiReadQuery;
 import api.daos.UserDao;
 import api.query.ApiDeleteQuery;
@@ -37,6 +40,7 @@ public class Main {
         try {
             ApiConnection.setConnection(Constant.host, Constant.port, Constant.db, Constant.user, Constant.password);
             new AuthController();
+
         
         } catch (Exception ex) {
             ex.printStackTrace();

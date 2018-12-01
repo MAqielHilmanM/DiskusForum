@@ -16,6 +16,7 @@ public abstract class BaseDao<T> {
 
     private String mTableName;
     private String[] mColumns;
+    private ResultSet mResultSet;
 
     public BaseDao(String mTableName, String[] mColumns) {
         this.mTableName = mTableName;
@@ -39,4 +40,13 @@ public abstract class BaseDao<T> {
     protected void setColumns(String[] columns){
         this.mColumns = columns;
     }
+
+    public ResultSet getmResultSet() {
+        return mResultSet;
+    }
+
+    public void setmResultSet(ResultSet mResultSet) {
+        this.mResultSet = mResultSet;
+    }
+    
 }

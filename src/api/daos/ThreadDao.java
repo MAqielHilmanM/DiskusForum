@@ -23,6 +23,8 @@ public class ThreadDao extends BaseDao<ThreadDao> {
     public static final String COLUMN_ID_MEMBER = "id_member";
     public static final String COLUMN_TITLE = "title";
     public static final String COLUMN_BODY = "body";
+    public static final String COLUMN_TOTAL_LIKE = "total_like";
+    public static final String COLUMN_TOTAL_COMMENT = "total_comment";
     public static final String COLUMN_CREATED_DATE = "created_date";
     public static final String[] COLUMNS = {
         COLUMN_ID,
@@ -30,6 +32,8 @@ public class ThreadDao extends BaseDao<ThreadDao> {
         COLUMN_ID_MEMBER,
         COLUMN_TITLE,
         COLUMN_BODY,
+        COLUMN_TOTAL_LIKE,
+        COLUMN_TOTAL_COMMENT,
         COLUMN_CREATED_DATE
     };
     
@@ -38,6 +42,8 @@ public class ThreadDao extends BaseDao<ThreadDao> {
     private String id_member;
     private String title;
     private String body;
+    private int likeCount;
+    private int commentCount;
     private Date createdDate;
 
     public ThreadDao() {
@@ -46,6 +52,7 @@ public class ThreadDao extends BaseDao<ThreadDao> {
 
     @Override
     public List<ThreadDao> toObjects(ResultSet rs) {
+        super.setmResultSet(rs);
         List<ThreadDao> lists = new ArrayList<>();
         try {
             while (rs.next()) {
@@ -54,6 +61,8 @@ public class ThreadDao extends BaseDao<ThreadDao> {
                 id_member = rs.getString(COLUMN_ID_MEMBER);
                 title = rs.getString(COLUMN_TITLE);
                 body = rs.getString(COLUMN_TITLE);
+                likeCount = rs.getInt(COLUMN_TOTAL_LIKE);
+                commentCount = rs.getInt(COLUMN_TOTAL_COMMENT);
                 createdDate = rs.getDate(COLUMN_CREATED_DATE);
                 lists.add(this);
             }
@@ -63,5 +72,38 @@ public class ThreadDao extends BaseDao<ThreadDao> {
         return lists;
     
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getId_community() {
+        return id_community;
+    }
+
+    public String getId_member() {
+        return id_member;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public int getLikeCount() {
+        return likeCount;
+    }
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+    
 
 }

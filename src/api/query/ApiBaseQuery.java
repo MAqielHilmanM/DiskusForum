@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package api.query;
+
+import api.daos.BaseDao;
+import java.sql.ResultSet;
+
 /**
  *
  * @author maqielhm
@@ -17,5 +21,5 @@ public abstract class ApiBaseQuery<T>{
     public abstract void prepareQuery();
     public abstract T execute();
     public abstract void inputCustomQuery(String query);
-    
+    public ResultSet executeAsResultSet(){return null;}
 }

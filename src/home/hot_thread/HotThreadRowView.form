@@ -39,7 +39,7 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="lblHotThreadRowCommunity" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="spHitThreadRowBody" alignment="0" min="-2" pref="372" max="-2" attributes="0"/>
+                                  <Component id="spHotThreadRowBody" alignment="0" min="-2" pref="372" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -63,7 +63,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="lblHotThreadRowTitle" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="spHitThreadRowBody" min="-2" max="-2" attributes="0"/>
+              <Component id="spHotThreadRowBody" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="lblHotThreadDate" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="15" max="32767" attributes="0"/>
@@ -110,7 +110,7 @@
         <Property name="text" type="java.lang.String" value="Lorem Ipsum Sim Dolor Amet"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="spHitThreadRowBody">
+    <Container class="javax.swing.JScrollPane" name="spHotThreadRowBody">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>

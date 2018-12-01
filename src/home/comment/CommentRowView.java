@@ -9,20 +9,25 @@ import home.member.*;
 import home.community.*;
 import java.awt.Component;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 
 /**
  *
  * @author maqielhm
  */
-public class CommentRows extends javax.swing.JPanel implements ListCellRenderer {
+public class CommentRowView extends javax.swing.JPanel implements ListCellRenderer {
 
     /**
      * Creates new form CommunityRows
      */
-    public CommentRows() {
+    public CommentRowView() {
         initComponents();
+        setOpaque(true);
         spCommentRowBody.setBorder(null);
+        spCommentRowBody.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        spCommentRowBody.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
     }
 
     /**
@@ -115,10 +120,18 @@ public class CommentRows extends javax.swing.JPanel implements ListCellRenderer 
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        CommentModel model = (CommentModel) value;
+        CommentRowModel model = (CommentRowModel) value;
         lblCommentRowDate.setText(model.getDate());
         lblCommentRowName.setText(model.getName());
         taCommentRowBody.setText(model.getBody());
+        
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
         return this;
     }
 }

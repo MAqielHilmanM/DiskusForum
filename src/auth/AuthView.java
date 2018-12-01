@@ -12,6 +12,7 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import utils.Helper;
 
 /**
  *
@@ -442,50 +443,13 @@ public class AuthView extends javax.swing.JFrame implements BaseView {
         pfRegisterPassword.setEchoChar((char) 0);
         pfRegisterRepassword.setEchoChar((char) 0);
         
-        tfLoginUsername.addFocusListener(tfFocusListener(tfLoginUsername, "Username"));
-        tfRegisterEmail.addFocusListener(tfFocusListener(tfRegisterEmail, "Email"));
-        tfRegisterName.addFocusListener(tfFocusListener(tfRegisterName, "Name"));
-        tfRegisterUsername.addFocusListener(tfFocusListener(tfRegisterUsername, "Username"));
-        pfLoginPassword.addFocusListener(pfFocusListener(pfLoginPassword, "Password"));
-        pfRegisterPassword.addFocusListener(pfFocusListener(pfRegisterPassword, "Password"));
-        pfRegisterRepassword.addFocusListener(pfFocusListener(pfRegisterRepassword, "Repassword"));
+        tfLoginUsername.addFocusListener(Helper.tfFocusListener(tfLoginUsername, "Username"));
+        tfRegisterEmail.addFocusListener(Helper.tfFocusListener(tfRegisterEmail, "Email"));
+        tfRegisterName.addFocusListener(Helper.tfFocusListener(tfRegisterName, "Name"));
+        tfRegisterUsername.addFocusListener(Helper.tfFocusListener(tfRegisterUsername, "Username"));
+        pfLoginPassword.addFocusListener(Helper.pfFocusListener(pfLoginPassword, "Password"));
+        pfRegisterPassword.addFocusListener(Helper.pfFocusListener(pfRegisterPassword, "Password"));
+        pfRegisterRepassword.addFocusListener(Helper.pfFocusListener(pfRegisterRepassword, "Repassword"));
     }
 
-    public FocusListener pfFocusListener(JPasswordField field, String defaultText) {
-        return new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (field.getText().equals(defaultText)) {
-                    field.setText("");
-                    field.setEchoChar('*');
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (field.getText().equals("")) {
-                    field.setText(defaultText);
-                    field.setEchoChar((char) 0);
-                }
-            }
-        };
-    }
-    
-    public FocusListener tfFocusListener(JTextField field, String defaultText) {
-        return new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (field.getText().equals(defaultText)) {
-                    field.setText("");
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (field.getText().equals("")) {
-                    field.setText(defaultText);
-                }
-            }
-        };
-    }
 }

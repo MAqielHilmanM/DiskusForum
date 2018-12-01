@@ -14,13 +14,14 @@ import javax.swing.ListCellRenderer;
  *
  * @author maqielhm
  */
-public class MyThreadRows extends javax.swing.JPanel implements ListCellRenderer {
+public class MyThreadRowView extends javax.swing.JPanel implements ListCellRenderer {
 
     /**
      * Creates new form CommunityRows
      */
-    public MyThreadRows() {
+    public MyThreadRowView() {
         initComponents();
+        setOpaque(true);
     }
 
     /**
@@ -115,11 +116,19 @@ public class MyThreadRows extends javax.swing.JPanel implements ListCellRenderer
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        MyThreadModel model = (MyThreadModel) value;
+        MyThreadRowModel model = (MyThreadRowModel) value;
         lblMyThreadDate.setText(model.getDate());
         lblMyThreadRowCom.setText(model.getCommunityName());
         lblMyThreadRowTitle.setText(model.getTitle());
         taMyThreadRowBody.setText(model.getBody());
+        
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
         return this;
     }
 }

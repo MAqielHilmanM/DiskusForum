@@ -3,18 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package home.my_thread;
+package home.com_thread;
 
 /**
  *
  * @author maqielhm
  */
-public class MyThreadModel {
+public class CommunityThreadRowModel {
     private String id;
     private String date;
-    private String communityName;
     private String title;
     private String body;
+
+    public CommunityThreadRowModel(String id, String date, String title, String body) {
+        this.id = id;
+        this.date = date;
+        this.title = title;
+        this.body = body;
+    }
 
     public String getId() {
         return id;
@@ -24,10 +30,6 @@ public class MyThreadModel {
         return date;
     }
 
-    public String getCommunityName() {
-        return communityName;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -35,13 +37,6 @@ public class MyThreadModel {
     public String getBody() {
         return body;
     }
-
-    public MyThreadModel(String id, String date, String communityName, String title, String body) {
-        this.id = id;
-        this.date = date;
-        this.communityName = communityName;
-        this.title = title;
-        this.body = body;
-    }
-
+    
+    
 }

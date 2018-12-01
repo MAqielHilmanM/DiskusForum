@@ -40,6 +40,7 @@ public class VertificationDao extends BaseDao<VertificationDao> {
 
     @Override
     public List<VertificationDao> toObjects(ResultSet rs) {
+        super.setmResultSet(rs);
         List<VertificationDao> lists = new ArrayList<>();
         try {
             while (rs.next()) {

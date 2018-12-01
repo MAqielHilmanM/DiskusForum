@@ -9,7 +9,7 @@ package home.member;
  *
  * @author maqielhm
  */
-public class MemberModel {
+public class MemberRowModel {
     private String id;
     private String name;
     private String communityPosition;
@@ -18,7 +18,7 @@ public class MemberModel {
     private String numberPost;
     private String status;
 
-    public MemberModel(String id, String name, String communityPosition, String title, String communityName, String numberPost, String status) {
+    public MemberRowModel(String id, String name, String communityPosition, String title, String communityName, String numberPost, String status) {
         this.id = id;
         this.name = name;
         this.communityPosition = communityPosition;

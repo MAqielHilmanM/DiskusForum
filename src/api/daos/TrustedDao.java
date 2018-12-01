@@ -19,7 +19,8 @@ import java.util.List;
  *
  * @author maqielhm
  */
-public class TrustedDao extends BaseDao<TrustedDao>{
+public class TrustedDao extends BaseDao<TrustedDao> {
+
     public static final String TABLE_NAME = "t_trusted";
     public static final String COLUMN_ID_TRUSTED = "id_trusted";
     public static final String COLUMN_ID_THREAD = "id_thread";
@@ -46,6 +47,7 @@ public class TrustedDao extends BaseDao<TrustedDao>{
 
     @Override
     public List<TrustedDao> toObjects(ResultSet rs) {
+        super.setmResultSet(rs);
         List<TrustedDao> lists = new ArrayList<>();
         try {
             while (rs.next()) {
@@ -61,5 +63,5 @@ public class TrustedDao extends BaseDao<TrustedDao>{
         }
         return lists;
     }
- 
+
 }

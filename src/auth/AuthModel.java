@@ -20,10 +20,11 @@ import java.util.logging.Logger;
  *
  * @author maqielhm
  */
-public class AuthModel implements BaseModel<AuthModel.Response, AuthModel.Request> {
+public class AuthModel implements BaseModel<AuthModel.Response> {
 
     @Override
-    public boolean insert(Request request) {
+    public boolean insert(Object req) {
+        Request request = (Request) req;
         String id;
         Boolean isUnique = false;
         do {
@@ -68,7 +69,7 @@ public class AuthModel implements BaseModel<AuthModel.Response, AuthModel.Reques
     }
 
     @Override
-    public boolean update(Request request) {
+    public boolean update(Object request) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -77,13 +78,10 @@ public class AuthModel implements BaseModel<AuthModel.Response, AuthModel.Reques
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Response findById(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
-    public Response findBy(Request request) {
+    public Response findSingleBy(Object req) {
+        Request request = (Request) req;
         ApiReadQuery<AuthDao> api = new ApiReadQuery<>(new AuthDao());
         List<AuthDao> data = api
                 .showAllColumn()
@@ -97,6 +95,12 @@ public class AuthModel implements BaseModel<AuthModel.Response, AuthModel.Reques
         }
         return null;
     }
+
+    @Override
+    public List<Response> findAllBy(Object request) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     class Request {
 

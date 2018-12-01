@@ -29,7 +29,7 @@ public class AuthDao extends BaseDao<AuthDao> {
         COLUMN_PASSWORD,
         COLUMN_MODIFIED_DATE
     };
-    
+
     private String id;
     private String email;
     private String username;
@@ -39,9 +39,11 @@ public class AuthDao extends BaseDao<AuthDao> {
     public AuthDao() {
         super(TABLE_NAME, COLUMNS);
     }
-    
+
     @Override
     public List<AuthDao> toObjects(ResultSet rs) {
+        super.setmResultSet(rs);
+
         List<AuthDao> lists = new ArrayList<>();
         try {
             while (rs.next()) {

@@ -9,14 +9,14 @@ package home.community;
  *
  * @author maqielhm
  */
-public class CommunityModel {
+public class CommunityRowModel {
     private String id;
     private String title;
     private String name;
     private String body;
     private String date;
 
-    public CommunityModel(String id, String title, String name, String body, String date) {
+    public CommunityRowModel(String id, String title, String name, String body, String date) {
         this.id = id;
         this.title = title;
         this.name = name;

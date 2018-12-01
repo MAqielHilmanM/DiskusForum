@@ -25,19 +25,22 @@ enum Order {
     DESCENDING
 }
 
-public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> implements ApiOperatorInterface<ApiReadQuery.Condition> {
+public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> implements ApiOperatorInterface<ApiReadQuery.Condition>, ApiJoinTableInterface<ApiReadQuery> {
 
     private List<String> mColumns;
     private String mTable = "";
+    private String mLastTable = "";
     private String mWhere = "";
     private boolean mShowAll = false;
     private T mTableObject;
     private String mQuery = "";
     private Order orderBy;
     private String orderByColumn;
+    private List<String> mGroups;
 
     public ApiReadQuery() {
         mColumns = new ArrayList<>();
+        mGroups = new ArrayList<>();
         mTableObject = null;
     }
 
@@ -45,6 +48,7 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
         mColumns = new ArrayList<>();
         mTableObject = table;
         mTable = table.getTableName();
+        mGroups = new ArrayList<>();
     }
 
     public ApiReadQuery addTable(T table) throws Exception {
@@ -71,6 +75,17 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
         return this;
     }
 
+    public ApiReadQuery showColumn(String[] column) {
+        if (mShowAll) {
+            System.err.println("Remove Show All Data");
+        }
+        for (String col : column) {
+            mColumns.add(col);
+        }
+        mShowAll = false;
+        return this;
+    }
+
     public ApiReadQuery orderByAscending(String column) {
         orderBy = Order.ASCENDING;
         orderByColumn = column;
@@ -80,6 +95,11 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
     public ApiReadQuery orderByDescending(String column) {
         orderBy = Order.DESCENDING;
         orderByColumn = column;
+        return this;
+    }
+
+    public ApiReadQuery groupBy(String column) {
+        mGroups.add(column);
         return this;
     }
 
@@ -107,14 +127,26 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
                 mQuery = mQuery.concat(" WHERE " + mWhere);
             }
 
+            if (mGroups.size() > 0) {
+                mQuery = mQuery.concat(" GROUP BY ");
+                for (int i = 0; i < mGroups.size(); i++) {
+                    mQuery = mQuery.concat(mGroups.get(i));
+                    if (i != mGroups.size() - 1) {
+                        mQuery = mQuery.concat(",");
+                    }
+                    mQuery = mQuery.concat(" ");
+                }
+            }
+
             if (orderBy != null && orderByColumn != null) {
-                mQuery = mQuery.concat(" ORDER BY "+orderByColumn+" ");
+                mQuery = mQuery.concat(" ORDER BY " + orderByColumn + " ");
                 if (orderBy == Order.ASCENDING) {
                     mQuery = mQuery.concat("ASC");
                 } else {
                     mQuery = mQuery.concat("DESC");
                 }
             }
+
         }
 
         System.out.println("READ QUERY : " + mQuery);
@@ -135,13 +167,31 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
             if (mTableObject == null) {
                 throw new Exception("Table Class Not Found");
             }
-            
+
             lists = mTableObject.toObjects(rs);
             ApiConnection.closeConnection();
         } catch (Exception e) {
             System.err.println("READ QUERY ERROR :" + e);
         }
         return lists;
+    }
+
+    @Override
+    public ResultSet executeAsResultSet() {
+        try {
+            if (!ApiConnection.hasSet()) {
+                throw new Exception("Connection Not Set");
+            }
+            ApiConnection.createConnection();
+            Statement state = ApiConnection.getConnection().createStatement();
+            prepareQuery();
+            ResultSet rs = state.executeQuery(mQuery);
+            return rs;
+        } catch (Exception e) {
+            System.err.println("READ QUERY ERROR :" + e);
+        }
+        ApiConnection.closeConnection();
+        return null;
     }
 
     @Override
@@ -213,7 +263,91 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
         return new Condition();
     }
 
-    public class Condition {
+    @Override
+    public ApiReadQuery addNaturalJoinTable(String table) {
+        if (mTable.isEmpty()) {
+            System.err.println("ERROR! table must Be define First, Auto define table");
+            mTable = table;
+        } else {
+            mTable += " NATURAL JOIN " + table;
+        }
+        mLastTable = table;
+        return this;
+    }
+
+    @Override
+    public ApiReadQuery addCrossJoinTable(String table) {
+        if (mTable.isEmpty()) {
+            System.err.println("ERROR! table must Be define First, Auto define table");
+            mTable = table;
+        } else {
+            mTable += " CROSS JOIN " + table;
+        }
+        mLastTable = table;
+        return this;
+    }
+
+    @Override
+    public ApiReadQuery addInnerJoinTable(String table1, String column1, String table2, String column2) {
+        if (mTable.isEmpty()) {
+            System.err.println("ERROR! table must Be define First, Auto define table");
+            mTable = table1;
+        } else {
+            mTable += " JOIN " + table1 + " ON (" + table1 + "." + column1 + " = " + table2 + "." + column2 + ") ";
+        }
+        mLastTable = table1;
+        return this;
+    }
+
+    @Override
+    public ApiReadQuery addLeftJoinTable(String table1, String column1, String table2, String column2) {
+        if (mTable.isEmpty()) {
+            System.err.println("ERROR! table must Be define First, Auto define table");
+            mTable = table1;
+        } else {
+            mTable += " LEFT JOIN " + table1 + " ON (" + table1 + "." + column1 + " = " + table2 + "." + column2 + ") ";
+        }
+        mLastTable = table1;
+        return this;
+    }
+
+    @Override
+    public ApiReadQuery addRightJoinTable(String table1, String column1, String table2, String column2) {
+        if (mTable.isEmpty()) {
+            System.err.println("ERROR! table must Be define First, Auto define table");
+            mTable = table1;
+        } else {
+            mTable += " RIGHT JOIN " + table1 + " ON (" + table1 + "." + column1 + " = " + table2 + "." + column2 + ") ";
+        }
+        mLastTable = table1;
+        return this;
+    }
+
+    @Override
+    public ApiReadQuery addFullJoinTable(String table1, String column1, String table2, String column2) {
+        if (mTable.isEmpty()) {
+            System.err.println("ERROR! table must Be define First, Auto define table");
+            mTable = table1;
+        } else {
+            mTable += " FULL JOIN " + table1 + " ON (" + table1 + "." + column1 + " = " + table2 + "." + column2 + ") ";
+        }
+        mLastTable = table1;
+        return this;
+    }
+
+    @Override
+    public ApiReadQuery addInnerJoinTable(String table, String column) {
+        if (mTable.isEmpty()) {
+            System.err.println("ERROR! table must Be define First, Auto define table");
+            mTable = table;
+        } else {
+            mTable += " JOIN " + table + " USING (" + column + ") ";
+        }
+        mLastTable = table;
+        return this;
+    }
+
+    public class Condition extends ApiReadQuery<T> {
 
         public ApiReadQuery AND() {
             mWhere = mWhere.concat(" AND ");
@@ -233,6 +367,10 @@ public class ApiReadQuery<T extends BaseDao<T>> extends ApiBaseQuery<List<T>> im
 
         public List<T> execute() {
             return ApiReadQuery.this.execute();
+        }
+
+        public ResultSet executeAsResultSet() {
+            return ApiReadQuery.this.executeAsResultSet();
         }
     }
 }

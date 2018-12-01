@@ -10,12 +10,14 @@ import java.util.List;
 /**
  *
  * @author maqielhm
+ * @param <T> ResponseClass
+ * @param <K> RequestClass
  */
-public interface BaseModel<T,K> {
-    public boolean  insert(K request);
+public interface BaseModel<T> {
+    public boolean  insert(Object request);
     public boolean  delete(String id);
-    public boolean  update(K request);
+    public boolean  update(Object request);
     public List<T>  findAll();
-    public T        findById(String id);
-    public T        findBy(K request);
+    public List<T>  findAllBy(Object request);
+    public T        findSingleBy(Object request);
 }

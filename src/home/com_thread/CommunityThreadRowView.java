@@ -3,25 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package home.community_thread;
+package home.com_thread;
 
 import home.community.*;
 import java.awt.Component;
 import javax.swing.JList;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 
 /**
  *
  * @author maqielhm
  */
-public class CommunityThreadRows extends javax.swing.JPanel implements ListCellRenderer {
+public class CommunityThreadRowView extends javax.swing.JPanel implements ListCellRenderer {
 
     /**
      * Creates new form CommunityRows
      */
-    public CommunityThreadRows() {
+    public CommunityThreadRowView() {
         initComponents();
+        setOpaque(true);
         spCommunityThreadRow.setBorder(null);
+        spCommunityThreadRow.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        spCommunityThreadRow.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     }
 
     /**
@@ -97,10 +102,19 @@ public class CommunityThreadRows extends javax.swing.JPanel implements ListCellR
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        CommunityThreadModel model = (CommunityThreadModel) value;
+        CommunityThreadRowModel model = (CommunityThreadRowModel) value;
         lblCommunityThreadDate.setText(model.getDate());
         lblCommunityThreadRowTitle.setText(model.getTitle());
         taCommunityThreadRowBody.setText(model.getBody());
+
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
+
         return this;
     }
 }

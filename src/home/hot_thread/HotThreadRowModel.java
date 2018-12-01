@@ -9,7 +9,7 @@ package home.hot_thread;
  *
  * @author maqielhm
  */
-public class HotThreadModel {
+public class HotThreadRowModel {
     private String id;
     private String url_pic;
     private String name;
@@ -18,7 +18,7 @@ public class HotThreadModel {
     private String preview;
     private String date;
 
-    public HotThreadModel(String id, String url_pic, String name, String community_name, String title, String preview, String date) {
+    public HotThreadRowModel(String id, String url_pic, String name, String community_name, String title, String preview, String date) {
         this.id = id;
         this.url_pic = url_pic;
         this.name = name;

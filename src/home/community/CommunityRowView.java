@@ -7,20 +7,25 @@ package home.community;
 
 import java.awt.Component;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 
 /**
  *
  * @author maqielhm
  */
-public class CommunityRows extends javax.swing.JPanel implements ListCellRenderer {
+public class CommunityRowView extends javax.swing.JPanel implements ListCellRenderer {
 
     /**
      * Creates new form CommunityRows
      */
-    public CommunityRows() {
+    public CommunityRowView() {
         initComponents();
+        setOpaque(true);
         spCommunityRow.setBorder(null);
+        spCommunityRow.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        spCommunityRow.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        
     }
 
     /**
@@ -90,7 +95,7 @@ public class CommunityRows extends javax.swing.JPanel implements ListCellRendere
                 .addGap(20, 20, 20)
                 .addComponent(lblCommunityRowTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spCommunityRow, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(spCommunityRow, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCommunityDate)
@@ -115,11 +120,19 @@ public class CommunityRows extends javax.swing.JPanel implements ListCellRendere
 
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-        CommunityModel model = (CommunityModel) value;
+        CommunityRowModel model = (CommunityRowModel) value;
         lblCommunityDate.setText(model.getDate());
         lblCommunityRowName.setText(model.getName());
         lblCommunityRowTitle.setText(model.getTitle());
         taCommunityRowBody.setText(model.getBody());
+        
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
         return this;
     }
 }

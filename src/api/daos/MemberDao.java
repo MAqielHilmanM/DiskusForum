@@ -15,7 +15,8 @@ import java.util.List;
  *
  * @author maqielhm
  */
-public class MemberDao extends BaseDao<MemberDao>{
+public class MemberDao extends BaseDao<MemberDao> {
+
     public static final String TABLE_NAME = "t_member";
     public static final String COLUMN_ID_MEMBER = "id_member";
     public static final String COLUMN_ID_COMMUNITY = "id_community";
@@ -32,14 +33,14 @@ public class MemberDao extends BaseDao<MemberDao>{
     private String id_community;
     private String id_privilages;
     private Date joinDate;
-    
-    
+
     public MemberDao() {
-        super(TABLE_NAME,COLUMNS);
+        super(TABLE_NAME, COLUMNS);
     }
 
     @Override
     public List<MemberDao> toObjects(ResultSet rs) {
+        super.setmResultSet(rs);
         List<MemberDao> lists = new ArrayList<>();
         try {
             while (rs.next()) {

@@ -18,14 +18,14 @@ public class CommunityDao extends BaseDao<CommunityDao> {
 
     public static final String TABLE_NAME = "t_community";
     public static final String COLUMN_ID = "id_community";
-    public static final String COLUMN_TITLE = "title";
+    public static final String COLUMN_NAME = "title";
     public static final String COLUMN_DESC = "description";
     public static final String COLUMN_THREAD_COUNT = "total_thread";
     public static final String COLUMN_MEMBER_COUNT = "total_member";
     public static final String COLUMN_CREATED_DATE = "created_date";
     public static final String[] COLUMNS = {
         COLUMN_ID,
-        COLUMN_TITLE,
+        COLUMN_NAME,
         COLUMN_DESC,
         COLUMN_THREAD_COUNT,
         COLUMN_MEMBER_COUNT,
@@ -45,11 +45,13 @@ public class CommunityDao extends BaseDao<CommunityDao> {
 
     @Override
     public List<CommunityDao> toObjects(ResultSet rs) {
+        super.setmResultSet(rs);
+
         List<CommunityDao> lists = new ArrayList<>();
         try {
             while (rs.next()) {
                 id = rs.getString(COLUMN_ID);
-                title = rs.getString(COLUMN_TITLE);
+                title = rs.getString(COLUMN_NAME);
                 desc = rs.getString(COLUMN_DESC);
                 total_thread = rs.getInt(COLUMN_THREAD_COUNT);
                 total_member = rs.getInt(COLUMN_MEMBER_COUNT);
