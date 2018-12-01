@@ -29,6 +29,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionListener;
@@ -1962,6 +1963,17 @@ public class HomeView extends javax.swing.JFrame implements BaseView {
 
     public int getLstSubCommunityRMemberIndex() {
         return lstSubCommunityRMember.getSelectedIndex();
+    }
+
+    
+    public void setSubMyThreadR(String title, String percent, String likeCount, String totalCount, String date, String time, String body) {
+        lblSubMyThreadRCount.setText(likeCount);
+        lblSubMyThreadRDate.setText(date);
+        lblSubMyThreadRPercent.setText(percent);
+        lblSubMyThreadRTime.setText(time);
+        lblSubMyThreadRTitle.setText(title);
+        lblSubMyThreadRMaxCount.setText(totalCount);
+        taSubMyThreadRBody.setText(body);
     }
 
 }

@@ -118,7 +118,47 @@ public class SubHomeMyThreadModel implements BaseModel<SubHomeMyThreadModel> {
             Logger.getLogger(SubHomeHotThreadModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return this;
-
     }
 
+    public String getmIdThread() {
+        return mIdThread;
+    }
+
+    public String getmTitle() {
+        return mTitle;
+    }
+
+    public String getmBody() {
+        return mBody;
+    }
+
+    public String getmTrustAvg() {
+        return mTrustAvg;
+    }
+
+    public int getmTrustCount() {
+        return mTrustCount;
+    }
+
+    public int getmTrustTotal() {
+        return mTrustTotal;
+    }
+
+    public Date getmDate() {
+        return mDate;
+    }
+
+    public String getmIdMember() {
+        return mIdMember;
+    }
+
+    public String getmIdCommunity() {
+        return mIdCommunity;
+    }
+
+    public List<CommentRowModel> getmCommentLists() {
+        return mCommentLists;
+    }
+
+    
 }

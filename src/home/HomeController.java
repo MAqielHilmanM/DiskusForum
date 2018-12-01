@@ -19,6 +19,7 @@ import home.model.HomeMyThreadModel;
 import home.model.HomeProfileModel;
 import home.model.SubHomeCommunityModel;
 import home.model.SubHomeHotThreadModel;
+import home.model.SubHomeMyThreadModel;
 import home.my_thread.MyThreadRowModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -81,7 +82,6 @@ public class HomeController implements BaseController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 loadListMyThreadL();
-                loadListMyThreadR();
                 mView.changeMenu(MenuType.MENU_MY_THREAD);
             }
         });
@@ -184,7 +184,7 @@ public class HomeController implements BaseController {
                         mView.getTfSubHomeRComment());
                 if (model.insert(reqComment)) {
                     mView.showMessage("Berhasil Menambahkan Comment", "Status", 1);
-                    
+
                     loadListHomeR(mIdThread);
                 } else {
                     mView.showMessage("Gagal Menambahkan Comment", "Status", 0);
@@ -308,9 +308,34 @@ public class HomeController implements BaseController {
 
     }
 
-    public void loadListMyThreadR() {
+    public void loadListMyThreadR(String id) {
         DefaultListModel<CommentRowModel> dlm = new DefaultListModel<>();
-        dlm.addElement(new CommentRowModel("", "", "10 Jan 2018", "...", "John Doe"));
+        SubHomeMyThreadModel data = mModel.getmSubHomeMyThreadHashMap(id);
+        if (data == null) {
+            data = new SubHomeMyThreadModel().findSingleBy(id);
+            if (data != null) {
+                mModel.setmSubHomeMyThreadHashMap(id, data);
+            }
+        }
+
+        if (data != null) {
+            mView.setSubMyThreadR(
+                    data.getmTitle(),
+                    data.getmTrustAvg(),
+                    String.valueOf(data.getmTrustCount()),
+                    String.valueOf(data.getmTrustTotal()),
+                    Helper.convertDateToString(data.getmDate()),
+                    Helper.convertTimeToString(data.getmDate()),
+                    data.getmBody());
+
+            if (data.getmCommentLists().size() > 0) {
+                data.getmCommentLists().forEach((t) -> {
+                    dlm.addElement(t);
+                });
+
+            }
+        }
+
         mView.setLstSubMyThreadR(dlm);
     }
 
