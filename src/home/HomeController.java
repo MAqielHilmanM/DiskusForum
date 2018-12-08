@@ -21,8 +21,11 @@ import home.model.SubHomeCommunityModel;
 import home.model.SubHomeHotThreadModel;
 import home.model.SubHomeMyThreadModel;
 import home.my_thread.MyThreadRowModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.Action;
 import javax.swing.DefaultListModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -42,6 +45,7 @@ public class HomeController implements BaseController {
     private HomeView mView;
     private String mId;
     private String mIdThread;
+    private String mIdCommunity;
 
     public HomeController(String id) {
         mModel = new HomeModel();
@@ -56,7 +60,7 @@ public class HomeController implements BaseController {
     public void initComponent() {
         mModel = mModel.findSingleBy(mId);
         loadListHomeL();
-        mView.changeMenu(MenuType.MENU_HOME);
+        mView.changeMenu(MenuType.MENU_EMPTY);
 
         if (mModel != null) {
             mView.setName(Helper.convertNameToShortName(mModel.getmName(), 10));
@@ -73,8 +77,6 @@ public class HomeController implements BaseController {
             @Override
             public void mouseClicked(MouseEvent e) {
                 loadListCommunityL();
-                loadListCommunityRMember();
-                loadListCommunityRThread();
                 mView.changeMenu(MenuType.MENU_COMMUNITY);
             }
         });
@@ -151,11 +153,31 @@ public class HomeController implements BaseController {
             }
         });
 
+//      LIST LISTENER        
         mView.addLstSubHomeLListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 mIdThread = mModel.getmHotThreadModel().getHotThreadLists().get(mView.getLstSubHomeLIndex()).getId();
                 loadListHomeR(mIdThread);
+                mView.changeMenu(MenuType.MENU_HOME);
+            }
+        });
+
+        mView.addLstSubMyThreadLListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                mIdThread = mModel.getmMyThreadModel().getmMyThreadLists().get(mView.getLstSubMyThreadLIndex()).getId();
+                loadListMyThreadR(mIdThread);
+                mView.changeMenu(MenuType.MENU_MY_THREAD);
+            }
+        });
+
+        mView.addLstSubCommunityLListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                mIdCommunity = mModel.getmCommunityModel().getmCommunityLists().get(mView.getLstSubCommunityLIndex()).getId();
+                loadListCommunityR(mIdCommunity);
+                mView.changeMenu(MenuType.MENU_COMMUNITY);
             }
         });
 
@@ -191,6 +213,33 @@ public class HomeController implements BaseController {
                 }
             }
 
+        });
+
+        mView.setBtnSubMyThreadL(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mView.changeMenu(MenuType.MENU_MY_THREAD_ADD);
+            }
+        });
+
+        mView.setBtnSubCommunityL(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mView.changeMenu(MenuType.MENU_COMMUNITY_ADD);
+            }
+        });
+
+        mView.setBtnSubMyThreadRNewCreate(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SubHomeMyThreadModel model = new SubHomeMyThreadModel();
+                Boolean result = model.insert(mModel.getmSubHomeMyThreadHashMap(mId).new Request(mView.getTfSubMyThreadTitleRNew(), mView.getTaSubMyThreadRNewCreate()));
+                if (result) {
+                    mView.showMessage("Insert Berhasil", "Done", 0);
+                } else {
+                    mView.showMessage("Insert Gagal", "Gagal", 0);
+                }
+            }
         });
     }
 
@@ -339,18 +388,40 @@ public class HomeController implements BaseController {
         mView.setLstSubMyThreadR(dlm);
     }
 
-    public void loadListCommunityRThread() {
-        DefaultListModel<CommunityThreadRowModel> dlm = new DefaultListModel<>();
-        dlm.addElement(new CommunityThreadRowModel("", "10 Jan 18", "Lorem Ipsum", "..."));
-        dlm.addElement(new CommunityThreadRowModel("", "10 Jan 18", "Lorem Ipsum", "..."));
-        mView.setLstSubCommunityRThread(dlm);
-    }
+    public void loadListCommunityR(String mCommunityId) {
+        DefaultListModel<CommunityThreadRowModel> dlmThread = new DefaultListModel<>();
+        DefaultListModel<MemberRowModel> dlmMember = new DefaultListModel<>();
+        SubHomeCommunityModel data = mModel.getmSubHomeCommunityHashMap(mCommunityId);
+        if (data == null) {
+            data = new SubHomeCommunityModel().findSingleBy(mCommunityId);
+            if (data != null) {
+                mModel.setmSubHomeCommunityHashMap(mCommunityId, data);
+            }
+        }
 
-    public void loadListCommunityRMember() {
-        DefaultListModel<MemberRowModel> dlm = new DefaultListModel<>();
-        dlm.addElement(new MemberRowModel("", "John Doe", "Veteran at", "Lorem Ipsum", "Lorem Community", "12", "Online"));
-        dlm.addElement(new MemberRowModel("", "John Doe", "Veteran at", "Lorem Ipsum", "Lorem Community", "12", "Online"));
-        dlm.addElement(new MemberRowModel("", "John Doe", "Veteran at", "Lorem Ipsum", "Lorem Community", "12", "Online"));
-        mView.setLstSubCommunityRMember(dlm);
+        if (data != null) {
+            mView.setSubCommunityR(
+                    data.getmCommunityName(),
+                    data.getmCreatorName(),
+                    Helper.convertDateToString(data.getmDate()),
+                    String.valueOf(data.getmMemberActive()),
+                    String.valueOf(data.getmMemberTotal()),
+                    String.valueOf(data.getmThreadTotal()),
+                    data.getmDescription());
+
+            if (data.getmCommThreadLists().size() > 0) {
+                data.getmCommThreadLists().forEach((t) -> {
+                    dlmThread.addElement(t);
+                });
+            }
+
+            if (data.getmMemberLists().size() > 0) {
+                data.getmMemberLists().forEach((t) -> {
+                    dlmMember.addElement(t);
+                });
+            }
+        }
+        mView.setLstSubCommunityRThread(dlmThread);
+        mView.setLstSubCommunityRMember(dlmMember);
     }
 }

@@ -1631,7 +1631,7 @@
                     </Container>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="pnlMyThreadRAdd">
+                <Container class="javax.swing.JPanel" name="pnlSubMyThreadRAdd">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ef" green="ea" red="9c" type="rgb"/>
@@ -1647,33 +1647,26 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="btnMyThreadRCreate" min="-2" pref="270" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="btnMyThreadRBack" min="-2" pref="250" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
-                                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="spSubMyThreadRNew" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="tfSubMyThreadTitleRNew" min="-2" pref="437" max="-2" attributes="0"/>
                                       </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                              <Component id="jLabel35" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfMyThreadTitleRAdd" min="-2" pref="123" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="btnSubMyThreadRNewCreate" min="-2" pref="270" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="btnSubMyThreadRNewBack" min="-2" pref="250" max="-2" attributes="0"/>
+                                              </Group>
                                               <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1685,17 +1678,17 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tfMyThreadTitleRAdd" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="tfSubMyThreadTitleRNew" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                   <Component id="jLabel35" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" pref="585" max="32767" attributes="0"/>
+                              <Component id="spSubMyThreadRNew" pref="592" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnMyThreadRCreate" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="btnMyThreadRBack" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="btnSubMyThreadRNewCreate" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="btnSubMyThreadRNewBack" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1703,23 +1696,23 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnMyThreadRCreate">
+                    <Component class="javax.swing.JButton" name="btnSubMyThreadRNewCreate">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Create"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMyThreadRCreateActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubMyThreadRNewCreateActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnMyThreadRBack">
+                    <Component class="javax.swing.JButton" name="btnSubMyThreadRNewBack">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Back"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMyThreadRBackActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubMyThreadRNewBackActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="tfMyThreadTitleRAdd">
+                    <Component class="javax.swing.JTextField" name="tfSubMyThreadTitleRNew">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Dialog" size="12" style="1"/>
@@ -1728,17 +1721,17 @@
                         <Property name="text" type="java.lang.String" value="Thread Title"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfMyThreadTitleRAddActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfSubMyThreadTitleRNewActionPerformed"/>
                       </Events>
                     </Component>
-                    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+                    <Container class="javax.swing.JScrollPane" name="spSubMyThreadRNew">
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                       </AuxValues>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTextArea" name="taMyThreadRCreate">
+                        <Component class="javax.swing.JTextArea" name="taSubMyThreadRNewCreate">
                           <Properties>
                             <Property name="columns" type="int" value="20"/>
                             <Property name="rows" type="int" value="5"/>
@@ -1758,7 +1751,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="pnlCommunityRAdd">
+                <Container class="javax.swing.JPanel" name="pnlSubCommunityRAdd">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ef" green="ea" red="9c" type="rgb"/>
@@ -1778,14 +1771,14 @@
                                   <Group type="102" attributes="0">
                                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="taCommunityRDescription" max="32767" attributes="0"/>
+                                          <Component id="taSubCommunityRNewDescription" max="32767" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                                                   <Group type="102" alignment="0" attributes="0">
                                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="tfCommunityREditName" min="-2" pref="240" max="-2" attributes="0"/>
+                                                      <Component id="tfSubCommunityRNewName" min="-2" pref="240" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <EmptySpace min="0" pref="167" max="32767" attributes="0"/>
@@ -1794,9 +1787,9 @@
                                   </Group>
                                   <Group type="102" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnCommunityCreate" min="-2" pref="252" max="-2" attributes="0"/>
+                                      <Component id="btnSubCommunityRNewCreate" min="-2" pref="252" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="btnCommunityRBack" max="32767" attributes="0"/>
+                                      <Component id="btnSubCommunityRNewBack" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1815,17 +1808,17 @@
                               <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tfCommunityREditName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfSubCommunityRNewName" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="taCommunityRDescription" pref="572" max="32767" attributes="0"/>
+                              <Component id="taSubCommunityRNewDescription" pref="572" max="32767" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnCommunityCreate" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="btnCommunityRBack" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="btnSubCommunityRNewCreate" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="btnSubCommunityRNewBack" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -1833,9 +1826,9 @@
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="tfCommunityREditName">
+                    <Component class="javax.swing.JTextField" name="tfSubCommunityRNewName">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCommunityREditNameActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfSubCommunityRNewNameActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel16">
@@ -1848,9 +1841,9 @@
                         <Property name="text" type="java.lang.String" value="Community Description : "/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="taCommunityRDescription">
+                    <Component class="javax.swing.JTextField" name="taSubCommunityRNewDescription">
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnCommunityCreate">
+                    <Component class="javax.swing.JButton" name="btnSubCommunityRNewCreate">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="f9" green="ff" red="c4" type="rgb"/>
@@ -1858,7 +1851,7 @@
                         <Property name="text" type="java.lang.String" value="Create"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnCommunityRBack">
+                    <Component class="javax.swing.JButton" name="btnSubCommunityRNewBack">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="f9" green="ff" red="c4" type="rgb"/>
@@ -1866,7 +1859,7 @@
                         <Property name="text" type="java.lang.String" value="Back"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCommunityRBackActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSubCommunityRNewBackActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel28">
@@ -1879,7 +1872,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="pnlEmptyR">
+                <Container class="javax.swing.JPanel" name="pnlSubEmptyR">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ef" green="ea" red="9c" type="rgb"/>

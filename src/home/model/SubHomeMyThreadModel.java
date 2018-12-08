@@ -11,7 +11,9 @@ import api.daos.MemberDao;
 import api.daos.PrivilagesDao;
 import api.daos.ThreadDao;
 import api.daos.UserDao;
+import api.query.ApiInsertQuery;
 import api.query.ApiReadQuery;
+import api.tools.Tools;
 import base.BaseModel;
 import home.comment.CommentRowModel;
 import java.sql.ResultSet;
@@ -44,7 +46,22 @@ public class SubHomeMyThreadModel implements BaseModel<SubHomeMyThreadModel> {
 
     @Override
     public boolean insert(Object request) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Request req = (Request)request;
+        String id = Tools.generateId("THR",10);
+        ApiInsertQuery<ThreadDao> insertApi = new ApiInsertQuery<>(new ThreadDao());
+        Boolean bool = insertApi
+                .insertColumnValue(ThreadDao.COLUMN_ID,id)
+                .insertColumnValue(ThreadDao.COLUMN_ID_COMMUNITY, mIdCommunity)
+                .insertColumnValue(ThreadDao.COLUMN_ID_MEMBER, mIdMember)
+                .insertColumnValue(ThreadDao.COLUMN_BODY, req.getBody())
+                .insertColumnValue(ThreadDao.COLUMN_TITLE, req.getTitle())
+                .execute();
+        if(bool){
+            System.out.println("Berhasil");
+        }else{
+            System.out.println("Gagal");
+        }
+        return bool;
     }
 
     @Override
@@ -160,5 +177,31 @@ public class SubHomeMyThreadModel implements BaseModel<SubHomeMyThreadModel> {
         return mCommentLists;
     }
 
-    
+    public class Request{
+        private String title;
+        private String body;
+
+        public Request(String title, String body) {
+            this.title = title;
+            this.body = body;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getBody() {
+            return body;
+        }
+
+        public void setBody(String body) {
+            this.body = body;
+        }
+        
+        
+    }
 }
